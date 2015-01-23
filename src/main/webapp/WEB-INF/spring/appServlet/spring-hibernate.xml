@@ -33,39 +33,50 @@
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 可以加多个包 -->
-		<!-- property name="packagesToScan">
+		<property name="packagesToScan">
 			<list>
-				<value>org.springframework.samples.thyme.entity</value>
+				<value>com.maven.demo.entity</value>
 			</list>
-		</property> -->
+		</property>
 		<property name="hibernateProperties">
-			<value>
+			<props>
 				<!-- 设置数据库方言 -->
-				hibernate.dialect=${hibernate.dialect}
-				<!-- 设置自动创建|更新|验证数据库表结构 -->
-				hibernate.hbm2ddl.auto=${hibernate.hbm2ddl.auto}
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<!-- 是否在控制台显示sql -->
-				hibernate.show_sql=${hibernate.show_sql}
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+
+				<!-- 设置自动创建|更新|验证数据库表结构 -->
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 				<!-- 是否格式化sql，优化显示 -->
-				hibernate.format_sql=true
-				<!-- 是否开启二级缓存 -->
-				hibernate.cache.use_second_level_cache=false
-				<!-- 是否开启查询缓存 -->
-				hibernate.cache.use_query_cache=false
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 				<!-- 数据库批量查询最大数 -->
-				hibernate.jdbc.fetch_size=50
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
 				<!-- 数据库批量更新、添加、删除操作最大数 -->
-				hibernate.jdbc.batch_size=50
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
 				<!-- 是否自动提交事务 -->
-				hibernate.connection.autocommit=true
+				<prop key="hibernate.connection.autocommit">${hibernate.connection.autocommit}</prop>
 				<!-- 指定hibernate在何时释放JDBC连接 -->
-				hibernate.connection.release_mode=auto
-				<!-- 创建session方式 hibernate4.x 的方式 -->
-				hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext
+				<prop key="hibernate.connection.release_mode">${hibernate.connection.release_mode}</prop>
+
 				<!-- javax.persistence.validation.mode默认情况下是auto的，就是说如果不设置的话它是会自动去你的classpath下面找一个bean-validation**包 
 					所以把它设置为none即可 -->
-				javax.persistence.validation.mode=none
-			</value>
+				<prop key="javax.persistence.validation.mode">${javax.persistence.validation.mode}</prop>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">${hibernate.bytecode.use_reflection_optimizer}</prop>
+				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+
+				<!-- 创建session方式 hibernate4.x 的方式 -->
+				<prop key="hibernate.current_session_context_class">${hibernate.current_session_context_class}
+				</prop>
+
+				<!-- 是否开启二级缓存 -->
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<!-- 是否开启查询缓存 -->
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}
+				</prop>
+				<prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop>
+
+			</props>
 		</property>
 	</bean>
 
@@ -79,12 +90,30 @@
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
+	<!-- 开启AOP监听 只对当前配置文件有效 -->
+	<aop:aspectj-autoproxy expose-proxy="true" />
+
+	<!-- 开启注解事务 只对当前配置文件有效 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
 	<!-- 声明式容器事务管理 ,transaction-manager指定事务管理器为transactionManager -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name = "add*" propagation = "REQUIRED" />
-			<tx:method name = "delete*" propagation = "REQUIRED" />
-			<tx:method name = "update*" propagation = "REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="merge*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="put*" propagation="REQUIRED" />
+			<tx:method name="use*" propagation="REQUIRED" />
+			<!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到 -->
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="count*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="list*" propagation="REQUIRED" read-only="true" />
 			<tx:method name="*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>

@@ -21,37 +21,17 @@
 	<mvc:resources mapping="/plugins/**" location="/public/plugins/" />
 	<mvc:resources mapping="/images/**" location="/public/images/" />
 
-
-	<!-- **************************************************************** -->
-	<!-- SPRING ANNOTATION PROCESSING -->
-	<!-- **************************************************************** -->
-	<mvc:annotation-driven conversion-service="conversionService" />
-	
-
 	<!-- **************************************************************** -->
 	<!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
 	<!-- Standard Spring MessageSource implementation -->
+	<!-- 国际化的消息资源文件 -->
 	<!-- **************************************************************** -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="Messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="cacheSeconds" value="60" />
 	</bean>
-
-
-	<!-- **************************************************************** -->
-	<!-- CONVERSION SERVICE -->
-	<!-- Standard Spring formatting-enabled implementation -->
-	<!-- **************************************************************** -->
-	<bean id="conversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-		<property name="formatters">
-			<set>
-				<bean class="thymeleafexamples.stsm.web.conversion.VarietyFormatter" />
-				<bean class="thymeleafexamples.stsm.web.conversion.DateFormatter" />
-			</set>
-		</property>
-	</bean>
-
 
 	<!-- **************************************************************** -->
 	<!-- THYMELEAF-SPECIFIC ARTIFACTS -->

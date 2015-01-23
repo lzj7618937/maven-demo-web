@@ -7,9 +7,18 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<!-- Maps '/' requests to the 'home' view -->
-	<mvc:view-controller path="/" view-name="home" />
+	<mvc:view-controller path="/" view-name="forward:/index" />
+	<!-- 当在web.xml 中 DispatcherServlet使用 <url-pattern>/</url-pattern> 映射时，能映射静态资源 -->
+	<mvc:default-servlet-handler />
 
+	<!-- 开启controller注解支持 -->
+	<!-- 注：如果base-package=cn.javass 则注解事务不起作用 TODO 读源码 -->
 	<context:component-scan base-package="org.springframework.samples.mvc" />
 	<context:component-scan base-package="thymeleafexamples.stsm" />
+	<context:component-scan base-package="com.maven.demo.web.controller" />
+	<!-- 扫描com.yimi.dao包下所有标注@Repository的DAO组件 -->
+	<context:component-scan base-package="com.maven.demo.dao" />
+	<!-- 扫描com.yimi.service包下所有标注@Service的服务组件 -->
+	<context:component-scan base-package="com.maven.demo.service" />
 
 </beans>

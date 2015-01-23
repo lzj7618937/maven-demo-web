@@ -49,11 +49,27 @@ This showcase originated from a [blog post](http://blog.springsource.com/2010/07
 
 A screen cast showing the showcase in action is [available in QuickTime format](http://s3.springsource.org/MVC/mvc-showcase-screencast.mov).
 
+编译运行:
+-------------------
 -----------------------------maven使用--------------------------------------
 编译：
 直接在目录下运行mvn compile
 打包：
 直接在目录下运行mvn package
+
+
+服务器维护:
+-------------------
+https://my.bluehost.com/web-hosting/
+demon-studio.com/Demon$1234
+
+--后台登录
+ssh demonstu@demon-studio.com
+用户名/密码：demonstu/Demon$1234
+
+FTP
+ftp.demon-studio.com
+demonstu/Demon$1234
 
 ---------------------------查看进程-----------------------------------
 sudo netstat -anp | grep 8080 8009 8005
@@ -71,12 +87,10 @@ http://gm100861.blog.51cto.com/1930562/950066
 sudo vi mvn compile
 sudo source /etc/profile
 
--------------------------框架说明-----------------------------------
-所有配置从web.xml开始
-
-报错：
-1.出现tomcat启动时报错，如：Failed to initialize component [org.apache.catalina.webresources.JarResourceSet
-原因分析：spring-context和spring-context-support有冲突造成，去除spring-context-support的依赖后解决。
+版本管理:
+-------------------
+github代码管理：
+http://www.cnblogs.com/yc-755909659/p/3753626.html
 
 目录结构：
 |-src.main.java.com.demo
@@ -96,6 +110,16 @@ sudo source /etc/profile
 |--------webapp
 |----test
 
+
+框架说明:
+-------------------
+-------------------------框架说明-----------------------------------
+所有配置从web.xml开始
+
+报错：
+1.出现tomcat启动时报错，如：Failed to initialize component [org.apache.catalina.webresources.JarResourceSet
+原因分析：spring-context和spring-context-support有冲突造成，去除spring-context-support的依赖后解决。
+
 Spring一些思想：
 1.注解式Spring MVC响应流程：http://www.cnblogs.com/liukemng/p/3724379.html
 2.
@@ -114,5 +138,5 @@ ContextLoaderListener作用详解可参考：http://blog.csdn.net/ysughw/article
 7.配置thymeleaf,可参考：http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html
 8.配置hibernate,可参考：http://www.cnblogs.com/leiOOlei/p/3727859.html
 9.配置用户自定义过滤器和拦截器，可参考：http://wenku.baidu.com/view/0883d535b90d6c85ec3ac692.html
-10.
+10.加入hibernate-ehcache配置：可参考：http://xingqinstar.iteye.com/blog/1578578
 

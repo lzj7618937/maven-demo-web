@@ -69,7 +69,8 @@ public abstract class BaseHibernateDao<M extends java.io.Serializable, PK extend
 
 	public Session getSession() {
 		// 事务必须是开启的(Required)，否则获取不到
-		return sessionFactory.getCurrentSession();
+		//return sessionFactory.getCurrentSession();
+		return sessionFactory.openSession();
 	}
 
 	@SuppressWarnings("unchecked")

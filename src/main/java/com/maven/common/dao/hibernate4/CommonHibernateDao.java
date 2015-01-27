@@ -25,7 +25,8 @@ public class CommonHibernateDao implements ICommonDao {
     private SessionFactory sessionFactory;
 
     public Session getSession() {
-        return sessionFactory.getCurrentSession();
+		//return sessionFactory.getCurrentSession();
+		return sessionFactory.openSession();
     } 
     
     

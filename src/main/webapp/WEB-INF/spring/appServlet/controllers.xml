@@ -15,10 +15,15 @@
 	<!-- 注：如果base-package=cn.javass 则注解事务不起作用 TODO 读源码 -->
 	<context:component-scan base-package="org.springframework.samples.mvc" />
 	<context:component-scan base-package="thymeleafexamples.stsm" />
-	<context:component-scan base-package="com.maven.demo.web.controller" />
+	<context:component-scan base-package="com.maven.common" />
 	<!-- 扫描com.yimi.dao包下所有标注@Repository的DAO组件 -->
 	<context:component-scan base-package="com.maven.demo.dao" />
 	<!-- 扫描com.yimi.service包下所有标注@Service的服务组件 -->
 	<context:component-scan base-package="com.maven.demo.service" />
+	<!-- 扫描com.yimi.service包下所有标注@Controller的服务组件 -->
+	<context:component-scan base-package="com.maven.demo.web">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
 
 </beans>

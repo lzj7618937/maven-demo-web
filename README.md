@@ -67,6 +67,9 @@ demon-studio.com/Demon$1234
 ssh demonstu@demon-studio.com
 用户名/密码：demonstu/Demon$1234
 
+--查找文件 
+find . -name 'httpd.conf'
+
 FTP
 ftp.demon-studio.com
 demonstu/Demon$1234
@@ -75,6 +78,8 @@ demonstu/Demon$1234
 sudo netstat -anp | grep 8080 8009 8005
 ps -aux | grep httpd
 sudo kill -9 2352
+
+ ps -ef | grep httpd
 
 -------------------------查看服务--------------------------------------
 http://gm100861.blog.51cto.com/1930562/950066
@@ -139,4 +144,19 @@ ContextLoaderListener作用详解可参考：http://blog.csdn.net/ysughw/article
 8.配置hibernate,可参考：http://www.cnblogs.com/leiOOlei/p/3727859.html
 9.配置用户自定义过滤器和拦截器，可参考：http://wenku.baidu.com/view/0883d535b90d6c85ec3ac692.html
 10.加入hibernate-ehcache配置：可参考：http://xingqinstar.iteye.com/blog/1578578
+
+
+开发说明:
+-------------------
+http://sishuok.com/forum/blogPost/list/2625.html
+
+
+常见问题:
+-------------------
+spring管理hibernate4 transaction getCurrentSession为什么报错？
+http://www.zuidaima.com/question/2017266650483712.htm
+
+前台乱码问题：
+修改spring-thymeleaf.xml,增加：<property name="characterEncoding" value="UTF-8"/>  
+http://blog.csdn.net/xwin1989/article/details/17553839
 

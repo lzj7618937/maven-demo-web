@@ -46,7 +46,7 @@
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 
 				<!-- 设置自动创建|更新|验证数据库表结构 -->
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<!-- prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop-->
 				<!-- 是否格式化sql，优化显示 -->
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 				<!-- 数据库批量查询最大数 -->

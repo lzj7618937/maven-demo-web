@@ -160,3 +160,9 @@ http://www.zuidaima.com/question/2017266650483712.htm
 修改spring-thymeleaf.xml,增加：<property name="characterEncoding" value="UTF-8"/>  
 http://blog.csdn.net/xwin1989/article/details/17553839
 
+SpringMVC为什么在修改一个静态页面必须重新启动服务器才可以？ 
+1.参考http://bbs.csdn.net/topics/390301021?page=1，由于论坛上的问题是针对freemaker，但本应用没有使用，而用的thymeleaf，在网站上查了一下没有相关解决方案。
+2.试了下使用springmvc原有的视图转发类无些问题。
+3.所以直接看了thymeleaf官方文档，看到ServletContextTemplateResolver有个属性为templateResolver.setCacheTTLMs(3600000L);所以加上了相关参数，加上如下配置属性：
+ <property name="cacheTTLMs" value="10"/>  问题解决。
+

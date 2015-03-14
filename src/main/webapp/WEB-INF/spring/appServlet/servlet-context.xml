@@ -24,8 +24,8 @@
 			<beans:set>
 				<beans:bean
 					class="org.springframework.samples.mvc.convert.MaskFormatAnnotationFormatterFactory" />
-				<beans:bean class="thymeleafexamples.stsm.web.conversion.VarietyFormatter" />
-				<beans:bean class="thymeleafexamples.stsm.web.conversion.DateFormatter" />
+				<!-- beans:bean class="thymeleafexamples.stsm.web.conversion.VarietyFormatter" /> -->
+				<!-- beans:bean class="thymeleafexamples.stsm.web.conversion.DateFormatter" /> -->
 			</beans:set>
 		</beans:property>
 	</beans:bean>
@@ -60,7 +60,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources/ directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/public/**" location="public" />
 
 	<!-- 错误路径和错误页面，注意指定viewResolver -->
 	<view-controller path="/404" view-name="view/error/404" />
@@ -90,7 +90,8 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 	<!-- Imports user-defined @Controller beans that process client requests -->
-	<beans:import resource="spring-thymeleaf.xml" />
+	<beans:import resource="spring-thymeleaf.xml" /> 
+	<!-- beans:import resource="spring-mvc.xml" />-->
 	<beans:import resource="spring-hibernate.xml" />
 	<beans:import resource="controllers.xml" />
 

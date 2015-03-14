@@ -7,35 +7,13 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Bootstrap 101 Template</title>
+<title>这个网</title>
 
 <!-- Bootstrap core CSS -->
-<link href="http://v2.bootcss.com/assets/css/bootstrap.css"
-	rel="stylesheet" />
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<style type="text/css">
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
-
-.sidebar-nav {
-	padding: 9px 0;
-}
-
-@media ( max-width : 980px) {
-	/* Enable use of floated navbar text */
-	.navbar-text.pull-right {
-		float: none;
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-}
-</style>
-
-<link href="http://v2.bootcss.com/assets/css/bootstrap-responsive.css"
-	rel="stylesheet" />
+<link th:href="@{/css/style-index.css}" rel="stylesheet" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,188 +24,185 @@ body {
 </head>
 <body>
 
-	<div class="navbar  navbar-fixed-top">
-		<div class="navbar-inner">
+<!-- Header
+    ================================================== -->
+    
+	<header>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">这个网</a>
+				</div>
 
-				<button type="button" class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">菜单一 <span class="sr-only">(current)</span></a></li>
+						<li><a href="#">菜单二</a></li>
 
-				<a class="brand" href="#">这个网</a>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">
+								下拉菜单 <span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">下拉菜单一</a></li>
+								<li><a href="#">下拉菜单二</a></li>
+								<li><a href="#">下拉菜单三</a></li>
+								<li class="divider"></li>
+								<li><a href="#">下拉菜单四</a></li>
+								<li class="divider"></li>
+								<li><a href="#">下拉菜单五</a></li>
+							</ul></li>
 
-				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right">
-						<a href="#" class="navbar-link"><span
-							th:text="${user.userName}">这个人</span></a>，欢迎来到这个网！ <a
-							href="/user/logout">退出</a>
-					</p>
-
-					<ul class="nav">
-						<li class="active"><a href="#">主页</a></li>
-						<li><a href="#">这个一</a></li>
-						<li><a href="#">这个二</a></li>
-						<li><a href="#">这个三</a></li>
-						<li><a href="#">这个最后</a></li>
-						<li><a href="#about">关于我们</a></li>
-						<li><a href="#contact">联系我们</a></li>
-						<li class="divider-vertical"></li>
+						<li><a href="#">关于我们</a></li>
+						<li><a href="#">联系我们</a></li>
 					</ul>
 
-					<form class="navbar-search pull-left">
-						<input type="text" class="search-query" placeholder="找些什么？">
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="查些什么？" />
+						</div>
+						<button type="submit" class="btn btn-default">查找</button>
 					</form>
 
-				</div>
-				<!--/.nav-collapse -->
-
-			</div>
-		</div>
-	</div>
-
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header">Sidebar</li>
-						<li class="active"><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li class="nav-header">Sidebar</li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li class="nav-header">Sidebar</li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
+					<ul class="nav navbar-nav navbar-right" th:if="${user!=null}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false"><span
+								th:text="${user.userName}">lzj7618937</span> <span
+								class="caret"></span> </a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">我的主页</a></li>
+								<li><a href="#">我的文章</a></li>
+								<li><a href="#">我的好友</a></li>
+								<li class="divider"></li>
+								<li><a href="#">我的照片</a></li>
+							</ul></li>
 					</ul>
+
+					<ul class="nav navbar-nav navbar-right" th:if="${user==null}">
+						<li><a href="#">登录</a></li>
+						<li><a href="#">注册</a></li>
+					</ul>
+
 				</div>
-				<!--/.well -->
+				<!-- /.navbar-collapse -->
 			</div>
-			<!--/span-->
-			<div class="span9">
-				<div class="hero-unit">
-					<h1>Hello, world!</h1>
-					<p>This is a template for a simple marketing or informational
-						website. It includes a large callout called the hero unit and
-						three supporting pieces of content. Use it as a starting point to
-						create something more unique.</p>
-					<p>
-						<a href="#" class="btn btn-primary btn-large">Learn more
-							&raquo;</a>
-					</p>
+			<!-- /.container-fluid -->
+		</nav>
+	</header>
+
+<!-- Main
+    ================================================== -->
+    
+	<div class="main">
+		<div class="container">
+		
+		<!-- Image Slider -->
+                <div class="widget-container widget_gallery boxed">
+                    <div class="inner">
+                        <div id="myCarousel" class="carousel slide" data-interval="20000">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="active item">
+                                    <img th:src="@{/images/temp/top-slider-5.jpg}" alt="" />
+                                    <div class="carousel-title"><h6>Brave animated series</h6><p>Disney Pixar</p></div>
+                                </div>
+                                <div class="item">
+                                    <img th:src="@{/images/temp/top-slider-2.jpg}" alt="" />
+                                    <div class="carousel-title"><h6>Horton</h6><p>Change your fate</p></div>
+                                </div>
+                                <div class="item">
+                                    <img th:src="@{/images/temp/top-slider-3.jpg}" alt="" />
+                                    <div class="carousel-title"><h6>Surf up</h6><p>Change your fate</p></div>
+                                </div>
+                                <div class="item">
+                                    <img th:src="@{/images/temp/top-slider-4.jpg}" alt="" />
+                                    <div class="carousel-title"><h6>Wall-e</h6><p>Disney Pixar</p></div>
+                                </div>
+                                <div class="item">
+                                    <img th:src="@{/images/temp/top-slider-1.jpg}" alt="" />
+                                    <div class="carousel-title"><h6>Ice Age</h6><p>Change your fate</p></div>
+                                </div>
+                            </div>
+                            <!-- Carousel indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                                <li data-target="#myCarousel" data-slide-to="3"></li>
+                                <li data-target="#myCarousel" data-slide-to="4"></li>
+                            </ol>
+                            <!-- Carousel nav -->
+                            <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
+                            <a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Image Slider -->
+
+			<div class="row-fluid">
+				<div class="col-sm-6 col-md-2">
+					<div class="thumbnail">
+						<img th:src="@{/images/temp/avatar.png}" alt="..." />
+						<div class="caption">
+							<h3>Thumbnail label</h3>
+							<p>...</p>
+							<p>
+								<a href="#" class="btn btn-primary" role="button">Button</a> <a
+									href="#" class="btn btn-default" role="button">Button</a>
+							</p>
+						</div>
+					</div>
 				</div>
-				<div class="row-fluid">
-					<div class="span4">
-						<h2>Heading</h2>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
+
+				<div class="col-sm-6 col-md-10">
+					<div class="jumbotron ">
+						<h1>Hello, world!</h1>
+						<p>...</p>
 						<p>
-							<a class="btn" href="#">View details &raquo;</a>
+							<a class="btn btn-primary btn-lg" href="#" role="button">Learn
+								more</a>
 						</p>
 					</div>
-					<!--/span-->
-					<div class="span4">
-						<h2>Heading</h2>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
-						<p>
-							<a class="btn" href="#">View details &raquo;</a>
-						</p>
-					</div>
-					<!--/span-->
-					<div class="span4">
-						<h2>Heading</h2>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
-						<p>
-							<a class="btn" href="#">View details &raquo;</a>
-						</p>
-					</div>
-					<!--/span-->
 				</div>
-				<!--/row-->
-				<div class="row-fluid">
-					<div class="span4">
-						<h2>Heading</h2>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
-						<p>
-							<a class="btn" href="#">View details &raquo;</a>
-						</p>
-					</div>
-					<!--/span-->
-					<div class="span4">
-						<h2>Heading</h2>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
-						<p>
-							<a class="btn" href="#">View details &raquo;</a>
-						</p>
-					</div>
-					<!--/span-->
-					<div class="span4">
-						<h2>Heading</h2>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
-						<p>
-							<a class="btn" href="#">View details &raquo;</a>
-						</p>
-					</div>
-					<!--/span-->
-				</div>
-				<!--/row-->
+
 			</div>
-			<!--/span-->
+
 		</div>
-		<!--/row-->
-
-		<hr />
-
-		<!-- Footer
-    ================================================== -->
-		<footer class="footer">
-			<div class="container" align="center">
-				<p>
-					Designed and built with all the love in the world by <a
-						href="http://twitter.com/mdo" target="_blank">@jaylee</a>
-				</p>
-				<p>
-					Code licensed under <a
-						href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache
-						License v2.0</a>, documentation under <a
-						href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-				</p>
-				<p>
-					<a href="http://glyphicons.com">Glyphicons Free</a> licensed under
-					<a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-				</p>
-			</div>
-		</footer>
-
-
 	</div>
-	<!--/.fluid-container-->
+
+	<hr />
+
+	<!-- Footer
+    ================================================== -->
+	<footer class="footer">
+		<div class="container" align="center">
+			<div class="row">
+					<div class="social">
+						<a href="#"><img th:src="@{/images/weibo.png}" alt="" /></a> <a
+							href="#"><img th:src="@{/images/weixin.png}" alt="" /></a>
+					</div>
+					<div class="service">
+						<span class="txt">客服电话:</span><span class="tel">400-0930-400</span>
+					</div>
+					<div class="link-list">
+						<a href="/about">网站导航</a> <a href="/about">帮助中心</a> <a
+							href="/about">服务支持</a> <a href="/about">关于一米</a> <a href="/about">加入我们</a>
+					</div>
+					<div class="friendly-link">
+						友情链接：<a href="http://www.shec.edu.cn/" target="_blank">上海教育网</a>
+					</div>
+			</div>
+		</div>
+	</footer>
 
 	<!-- Le javascript
     ================================================== -->
@@ -235,19 +210,8 @@ body {
 	<!-- Le javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="http://v2.bootcss.com/assets/js/jquery.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-transition.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-alert.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-modal.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-dropdown.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-scrollspy.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-tab.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-tooltip.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-popover.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-button.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-collapse.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-carousel.js"></script>
-	<script src="http://v2.bootcss.com/assets/js/bootstrap-typeahead.js"></script>
+	<script th:src="@{/js/jquery-1.11.2.js}"></script>
+	<script th:src="@{/js/bootstrap.js}"></script>
 
 </body>
 </html>

@@ -44,6 +44,7 @@
 		<property name="suffix" value=".html" />
 		<property name="templateMode" value="HTML5" />
         <property name="characterEncoding" value="UTF-8"/>  
+        <property name="cacheTTLMs" value="10"/>  
 	</bean>
 
 	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">

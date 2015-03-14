@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>这个网</title>
+<link href="css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<p>hello world!</p>
+	</div>
+
+	<span style="font-family: SimSun; font-size: 14px;">
+		<div class="wrap">
+			<div class="header">
+				<div class="navbar navbar-inverse navbar-swapper">
+					<div class="navbar-inner">
+						<div class="container">
+							<a class="brand" href="#">JThink</a>
+							<ul class="menu nav pull-right">
+								<li>
+									<a href="#/login">login</a>
+								</li>
+								<li>
+									<a href="#/register">register</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="content" class="content container" ng-view></div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="container">
+				<p>version1.0</p>
+			</div>
+		</div>
+	</span>
+
+	<script src="js/jquery-1.11.2.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
+</html>

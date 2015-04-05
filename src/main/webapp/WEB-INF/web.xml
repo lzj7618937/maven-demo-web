@@ -10,12 +10,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
-	
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	
+
 	<!-- spring字符过滤器 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -58,6 +53,7 @@
 	</filter-mapping>
 	
 	<!-- 作用可参考http://www.colabug.com/thread-1089428-1-1.html -->
+    <!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>
 			org.springframework.web.context.request.RequestContextListener
@@ -90,10 +86,10 @@
 	</welcome-file-list>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/go404</location>
+		<location>/go404.html</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/go500</location>
+		<location>/go500.html</location>
 	</error-page>
 </web-app>

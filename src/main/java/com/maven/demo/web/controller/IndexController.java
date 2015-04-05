@@ -45,4 +45,13 @@ public class IndexController {
 		return "test";
 	}
 
+    @RequestMapping(value = "/go404")
+    public String go404(HttpServletRequest request, Model model) {
+        return "go404";
+    }
+
+    @RequestMapping(value = "/go500")
+    public String go500(HttpServletRequest request, Model model) {
+        return "go500";
+    }
 }

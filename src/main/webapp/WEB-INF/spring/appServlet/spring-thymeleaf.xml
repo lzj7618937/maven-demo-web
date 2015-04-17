@@ -19,18 +19,6 @@
     <mvc:resources mapping="/images/**" location="/public/images/"/>
 
     <!-- **************************************************************** -->
-    <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
-    <!-- Standard Spring MessageSource implementation -->
-    <!-- 国际化的消息资源文件 -->
-    <!-- **************************************************************** -->
-    <bean id="messageSource"
-          class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="Messages"/>
-        <property name="defaultEncoding" value="UTF-8"/>
-        <property name="cacheSeconds" value="60"/>
-    </bean>
-
-    <!-- **************************************************************** -->
     <!-- THYMELEAF-SPECIFIC ARTIFACTS -->
     <!-- TemplateResolver <- TemplateEngine <- ViewResolver -->
     <!-- **************************************************************** -->

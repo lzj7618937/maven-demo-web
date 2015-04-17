@@ -32,7 +32,7 @@ public class UserController {
     @Autowired
     @Qualifier("UserService")
     private UserService userService;
-    
+
 
     @RequestMapping(value = "/user", method = {RequestMethod.GET})
     public String list(HttpServletRequest request, Model model) {
@@ -44,21 +44,19 @@ public class UserController {
         Integer id = ServletRequestUtils.getIntParameter(request, "id", -1);
         boolean pre = ServletRequestUtils.getBooleanParameter(request, "pre", false);
         Page<UserModel> page = null;
-        if(id > 0) {
-            if(pre) {
+        if (id > 0) {
+            if (pre) {
                 page = userService.pre(id, pn);
-            }
-            else {
+            } else {
                 page = userService.next(id, pn);
             }
-        } 
-        else {
+        } else {
             page = userService.listAll(pn);
         }
         request.setAttribute("page", page);
+        userService.delete(1);
         return "user/list";
     }
-
 
 
     @RequestMapping(value = "/user/query", method = {RequestMethod.GET})
@@ -76,68 +74,66 @@ public class UserController {
         //设置通用属性
     }
 
-    @RequestMapping(value="/user/{userId}/view", method = {RequestMethod.GET})
+    @RequestMapping(value = "/user/{userId}/view", method = {RequestMethod.GET})
     public String view(@PathVariable Integer topicId, HttpServletRequest request) {
         request.setAttribute(Constants.COMMAND, userService.get(topicId));
         return "user/view";
     }
 
 
-
-    
     @RequestMapping(value = "/user/add", method = {RequestMethod.GET})
     public String toAdd(Model model) {
-        
-        if(!model.containsAttribute(Constants.COMMAND)) {
+
+        if (!model.containsAttribute(Constants.COMMAND)) {
             model.addAttribute(Constants.COMMAND, new UserModel());
         }
         setCommonData(model);
         return "user/add";
     }
-    
+
     @RequestMapping(value = "/user/{id}/update", method = {RequestMethod.GET})
     public String toUpdate(Model model, @PathVariable Integer id) {
-        if(!model.containsAttribute(Constants.COMMAND)) {
-            model.addAttribute(Constants.COMMAND,  userService.get(id));
+        if (!model.containsAttribute(Constants.COMMAND)) {
+            model.addAttribute(Constants.COMMAND, userService.get(id));
         }
         setCommonData(model);
         return "user/update";
     }
-    
+
     @RequestMapping(value = "/user/{id}/delete", method = {RequestMethod.GET})
-    public String toDelete(@PathVariable Integer  id) {
+    public String toDelete(@PathVariable Integer id) {
         return "user/delete";
     }
 
 
     @RequestMapping(value = "/user/add", method = {RequestMethod.POST})
     public String add(Model model, @ModelAttribute("command") @Valid UserModel command, BindingResult result) {
-        
+
         //如果有验证错误 返回到form页面
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             model.addAttribute(Constants.COMMAND, command);
             return toAdd(model);
         }
-         userService.save(command);
+        userService.save(command);
         return "redirect:/user/success";
     }
-    
+
     @RequestMapping(value = "/user/{id}/update", method = {RequestMethod.PUT})
     public String update(Model model, @ModelAttribute("command") @Valid UserModel command, BindingResult result) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             model.addAttribute(Constants.COMMAND, command);
             return toUpdate(model, command.getId());
         }
         userService.update(command);
         return "redirect:/user/success";
     }
-    
+
     @RequestMapping(value = "/user/{id}/delete", method = {RequestMethod.DELETE})
     public String delete(@PathVariable Integer id) {
         userService.delete(id);
         return "redirect:/user/success";
     }
-    
+
     @RequestMapping(value = "/user/success", method = {RequestMethod.GET})
     public String success() {
         return "user/success";
@@ -147,6 +143,6 @@ public class UserController {
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Date.class, new DateEditor());
     }
-  
-    
+
+
 }

@@ -15,6 +15,7 @@ public class MakePlanController {
 
     @RequestMapping(value = "/index")
     public String index(HttpServletRequest request, Model model) {
+        request.setAttribute("dayNum",111);
         return "makeplan/makeplan";
     }
 }

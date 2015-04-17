@@ -14,6 +14,7 @@ import com.maven.demo.dao.UserDao;
 import com.maven.demo.entity.UserModel;
 import com.maven.demo.entity.UserQueryModel;
 import com.maven.demo.service.UserService;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User: Zhang Kaitao
@@ -41,6 +42,12 @@ public class UserServiceImpl extends BaseService<UserModel, Integer> implements 
     @Override
     public Page<UserModel> query(int pn, int pageSize, UserQueryModel command) {
         return PageUtil.getPage(userDao.countQuery(command) ,pn, userDao.query(pn, pageSize, command), pageSize);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Integer id) {
+        super.delete(id);
     }
 
    

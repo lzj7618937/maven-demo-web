@@ -3,51 +3,2540 @@
 <html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
 
-    <title>行程编辑页面</title>
-    <link rel="stylesheet" href="public/js/jquery-ui-1.11.4/jquery-ui.min.css" type="text/css"/>
-    <link rel="stylesheet" href="public/css/makeplan/plan.css" type="text/css"/>
-    <link rel="stylesheet" href="public/css/makeplan/plan_right.css" type="text/css"/>
+<title>行程编辑页面</title>
+<link rel="stylesheet" href="/js/jquery-ui-1.11.4/jquery-ui.min.css" type="text/css" />
+<link rel="stylesheet" href="/css/makeplan/plan.css" type="text/css" />
+<link rel="stylesheet" href="/css/makeplan/plan_right.css" type="text/css" />
 </head>
 
 <body style="width: 100%;">
-<div class="b_header_box">
-    <div class="b_header">
-        <div class="e_header_top clrfix">
-            <h1 class="logo pngfix"><a href="http://travel.qunar.com/" target="_top"
-                                       title="“去哪儿”旅游搜索引擎">Qunar.com去哪儿网</a>
-            </h1>
+	<div class="b_header_box">
+		<div class="b_header">
+			<div class="e_header_top clrfix">
+				<h1 class="logo pngfix">
+					<a href="http://travel.qunar.com/" target="_top" title="“去哪儿”旅游搜索引擎">Qunar.com去哪儿网</a>
+				</h1>
+				<div class="m_tr_list">
+					<a href="http://www.qunar.com/" target="_top" title="首页">首页</a>
+					<a href="http://flight.qunar.com/" target="_top" title="机票">机票</a>
+					<a href="http://hotel.qunar.com/" target="_top" title="酒店">酒店</a>
+					<a href="http://tuan.qunar.com/" target="_top" title="团购">团购</a>
+					<a href="http://package.qunar.com/" target="_top" title="度假">度假</a>
+					<a title="门票" target="_top" href="http://piao.qunar.com/">门票</a>
+					<a href="http://train.qunar.com/" target="_top" title="火车票">火车票</a>
+					<a class="selected" href="http://travel.qunar.com/" target="_top" title="攻略">攻略</a>
+					<a title="公寓" target="_top" href="http://gongyu.qunar.com/">公寓</a>
+					<a title="当地人" target="_top" href="http://ddr.qunar.com/">当地人</a>
+					<a title="车车" target="_top" href="http://car.qunar.com/">车车</a>
+					<a title="骆驼书" target="_top" href="http://guide.qunar.com/">骆驼书</a>
+					<a title="客户端" target="_top" href="http://app.qunar.com/">客户端</a>
+				</div>
+				<div class="m_tr_nav">
+					<div id="js_msgTip" style="position: absolute; right: 660px; top: 35px;"></div>
+					<span class="login_panel" id="loginPanel">
+						<a href="#">登录</a>
+						|
+						<a href="#">注册</a>
+					</span>
+					<a href="#" class="feedback_link" target="_blank">问题反馈</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-            <div class="m_tr_list"><a href="http://www.qunar.com/" target="_top" title="首页">首页</a><a
-                    href="http://flight.qunar.com/" target="_top" title="机票">机票</a><a href="http://hotel.qunar.com/"
-                                                                                      target="_top" title="酒店">酒店</a><a
-                    href="http://tuan.qunar.com/" target="_top" title="团购">团购</a><a href="http://package.qunar.com/"
-                                                                                    target="_top" title="度假">度假</a><a
-                    title="门票" target="_top" href="http://piao.qunar.com/">门票</a><a href="http://train.qunar.com/"
-                                                                                    target="_top" title="火车票">火车票</a><a
-                    class="selected" href="http://travel.qunar.com/" target="_top" title="攻略">攻略</a><a title="公寓"
-                                                                                                       target="_top"
-                                                                                                       href="http://gongyu.qunar.com/">公寓</a><a
-                    title="当地人" target="_top" href="http://ddr.qunar.com/">当地人</a><a title="车车" target="_top"
-                                                                                     href="http://car.qunar.com/">车车</a><a
-                    title="骆驼书" target="_top" href="http://guide.qunar.com/">骆驼书</a><a title="客户端" target="_top"
-                                                                                       href="http://app.qunar.com/">客户端</a>
-            </div>
-            <div class="m_tr_nav">
-                <div id="js_msgTip" style="position: absolute; right: 660px; top: 35px;"></div>
-                    <span class="login_panel" id="loginPanel"><a
-                            href="http://user.qunar.com/login.jsp?ret=http%3A%2F%2Ftravel.qunar.com%2Fplan%2F5316588%2Fedit%23!dayOrder%3D3">登录</a> | <a
-                            href="http://user.qunar.com/reg.jsp?ret=http%3A%2F%2Ftravel.qunar.com%2Fplan%2F5316588%2Fedit%23!dayOrder%3D3">注册</a>
-                    </span><a href="http://travel.qunar.com/bbs/forum.php?mod=viewthread&tid=2838" class="feedback_link"
-                              target="_blank">问题反馈</a>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="trip_plan_box">
+		<div class="trip_top_box top_box">
+			<div class="trip_top_inner">
+				<div class="trip_title_box">
+					<div class="title_wrap">
+						<h1 th:text="${title}">北京、厦门2日游</h1>
+						<a href="javascript:;" class="edit_icon" onclick="edit_icon_click()">&nbsp;</a>
+					</div>
+					<div class="title_input_box_wrap">
+						<div class="title_input_box">
+							<input type="text" value="我的旅行攻略" class="title_input" />
+						</div>
+						<div class="buttons">
+							<button type="button" class="cancel_btn" onclick="cancel_btn_click()">取消</button>
+							<button type="button" class="confrim_btn" onclick="confrim_btn_click()">确定</button>
+						</div>
+					</div>
+				</div>
+				<div class="select_box traffic_btn_box">
+					<div class="txt_label">
+						<span class="txt">默认交通</span>
+						<a class="arrow down" href="javascript:;"></a>
+					</div>
+					<div class="list_box" style="display: none;">
+						<ul class="lists">
+							<li class="item js_def_trf" style="display: none;">
+								<a href="http://travel.qunar.com/plan/5316588/edit#">默认交通</a>
+							</li>
+							<li class="item js_bus_trf">
+								<a href="http://travel.qunar.com/plan/5316588/edit#">公交</a>
+							</li>
+							<li class="item last js_drive_trf">
+								<a href="http://travel.qunar.com/plan/5316588/edit#">自驾</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="finish_box">
+					<button class="finish_button" type="button">完成</button>
+				</div>
+				<a target="_blank" href="http://travel.qunar.com/travelbook/phone/?from=plan" class="phone_link">同步到手机继续编辑</a>
+			</div>
+		</div>
+		<div class="trip_plan_main main_box" id="main_box" style="height: 331px;">
+			<div class="trip_sch_box main_left">
+				<div class="sch_box" id="sch_box">
+					<div class="sch_sum_info_box">
+						<div class="sch_title_box">
+							<h2>我的行程单</h2>
+							<span class="sch_day_count_info">
+								（ <em class="sch_day_count">12</em>天）
+							</span>
+						</div>
+					</div>
+					<div class="sch_info_box" id="sch_info_box" style="height: 256px;">
+						<div class="sch_info_inner">
+							<div class="sch_tree_box">
+								<div class="node_box day_op first">
+									<div class="d_info">
+										<div class="icon icon_hover"></div>
+										<div class="d_text">插入一天</div>
+									</div>
+								</div>
+								<div id="sch_tree">
+									<div class="main_day_info" data-id="299914" data-order="1">
+										<div class="node_box day_info day_info_selected">
+											<div class="d_info">
+												<div class="icon">D1</div>
+												<div class="d_text">
+													<div class="city_info">
+														<em class="city" data-id="299914" data-type="6">北京</em>
+													</div>
+													<div class="date_info">
+														<span class="txt">03月20日&nbsp;星期五</span>
+													</div>
+												</div>
+												<div class="del_icon"></div>
+											</div>
+										</div>
+										<div class="node_box day_op">
+											<div class="d_info">
+												<div class="icon"></div>
+												<div class="d_text hide">添加一天</div>
+											</div>
+										</div>
+									</div>
+									<div class="main_day_info" data-id="299782" data-order="2">
+										<div class="node_box day_info">
+											<div class="d_info">
+												<div class="icon">D2</div>
+												<div class="d_text">
+													<div class="city_info">
+														<em class="city" data-id="299782" data-type="6">厦门1</em>
+														<span class="r_arrow"></span>
+														<em class="city" data-id="299914" data-type="6">北京</em>
+													</div>
+													<div class="date_info">
+														<span class="txt">03月21日&nbsp;星期六</span>
+													</div>
+												</div>
+												<div class="del_icon"></div>
+											</div>
+										</div>
+										<div class="node_box day_op">
+											<div class="d_info ">
+												<div class="icon"></div>
+												<div class="d_text hide">添加一天</div>
+											</div>
+										</div>
+									</div>
+									<div class="main_day_info" data-id="299783" data-order="3">
+										<div class="node_box day_info">
+											<div class="d_info">
+												<div class="icon">D3</div>
+												<div class="d_text">
+													<div class="city_info">
+														<em class="city" data-id="299782" data-type="6">厦门3</em>
+													</div>
+													<div class="date_info">
+														<span class="txt">03月22日&nbsp;星期日</span>
+													</div>
+												</div>
+												<div class="del_icon"></div>
+											</div>
+										</div>
+										<div class="node_box day_op">
+											<div class="d_info ">
+												<div class="icon"></div>
+												<div class="d_text hide">添加一天</div>
+											</div>
+										</div>
+									</div>
+									<div class="main_day_info" data-id="299784" data-order="4">
+										<div class="node_box day_info">
+											<div class="d_info">
+												<div class="icon">D4</div>
+												<div class="d_text">
+													<div class="city_info">
+														<em class="city" data-id="299782" data-type="6">厦门4</em>
+													</div>
+													<div class="date_info">
+														<span class="txt">03月23日&nbsp;星期一</span>
+													</div>
+												</div>
+												<div class="del_icon"></div>
+											</div>
+
+										</div>
+										<div class="node_box day_op">
+											<div class="d_info ">
+												<div class="icon"></div>
+												<div class="d_text hide">添加一天</div>
+											</div>
+										</div>
+									</div>
+									<div class="main_day_info" data-id="299785" data-order="5">
+										<div class="node_box day_info">
+											<div class="d_info">
+												<div class="icon">D5</div>
+												<div class="d_text">
+													<div class="city_info">
+														<em class="city" data-id="299782" data-type="6">厦门5</em>
+													</div>
+													<div class="date_info">
+														<span class="txt">03月24日&nbsp;星期二</span>
+													</div>
+												</div>
+												<div class="del_icon"></div>
+											</div>
+
+										</div>
+										<div class="node_box day_op">
+											<div class="d_info ">
+												<div class="icon"></div>
+												<div class="d_text hide">添加一天</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main_right">
+				<div class="main_inner">
+					<div class="inner_left trip_day_box">
+						<div class="day_box" id="day_box">
+							<div id="day_title_out_box" class="day_title_out_box">
+								<div class="day_title_box">
+									<div class="switch_day_box">
+										<div class="switch_day_btn_box">
+											<a href="http://travel.qunar.com/plan/5316588/edit#prev_day" class="d_btn prev" title="前一天"></a>
+										</div>
+										<div id="day_order_info_box" class="day_order_info_box">
+											<h3 class="day_order_info">
+												第 <em class="day_order">3</em>天
+											</h3>
+											<h5 class="day_order_date">
+												<div class="date_ct">
+													<span class="d_date js_show_calc">03月22日 星期日</span>
+												</div>
+												<div class="qunar-dp dpstartdate">
+													<input type="text" id="datepicker" style="display: none;" class="date_input textbox js_date_input" maxlength="10" />
+												</div>
+											</h5>
+										</div>
+										<div class="switch_day_btn_box">
+											<a href="http://travel.qunar.com/plan/5316588/edit#next_day" class="d_btn next" title="后一天"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="div_detail_out_scroll_win">
+								<div class="day_detail_out_box" id="day_detail_out_box" style="height: 191px;">
+									<div class="day_detail_box">
+										<div class="day_dests_box clrfix"></div>
+										<div id="day_element_list" class="day_element_list" style="display: block;">
+
+											<div class="day_element_node" data-type="4" data-poi-id="710971" data-id="11963880">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/cb83d0c2b1a302ffffffffc8d65eac.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="0">01</span>
+															<span class="name_txt">厦门大学</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：福建省厦门市思明区思明南路422号</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a href="javascript:;">
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="4" data-poi-id="715901" data-id="11967390" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/616a4f94c42d635593835fbb.jpg_r_480x360x95_d0259652.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="1">02</span>
+															<span class="name_txt">鼓浪屿</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：厦门岛西南隅，隔500米宽的鹭江与厦门岛相望</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="6" data-poi-id="4268606" data-id="11967396" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/JhS1_t5-Xb9uI2nMJ720.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="2">03</span>
+															<span class="name_txt">厦门鼓浪屿漫漫悠悠旅馆</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：福建省厦门鼓浪屿内厝澳路100号</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+															<span class="grayline">|</span>
+															<a href="#" target="_blank" class="view_nearby js_order_link">预订</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="6" data-poi-id="4246512" data-id="11967399" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/Z7-xuT90b1si1yUYZ720.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="3">04</span>
+															<span class="name_txt">厦门毕思特酒店</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：厦门市思明区局中北街245号</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+															<span class="grayline">|</span>
+															<a href="#" target="_blank" class="view_nearby js_order_link">预订</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="6" data-poi-id="7404610" data-id="11967402" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/JhS1_t5EI3En2pljJ720.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="4">05</span>
+															<span class="name_txt">厦门探索酒店</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：厦门市湖里区禾山街道护安路723号</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+															<span class="grayline">|</span>
+															<a href="#" target="_blank" class="view_nearby js_order_link">预订</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="5" data-poi-id="3233780" data-id="11967404" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/cc264e61c810e83dddb12cfb.jpg_r_480x360x95_0a8a1002.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="5">06</span>
+															<span class="name_txt">黄则和花生汤店(中山路总店)</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：厦门市思明区中山路22-24号(肯德基对面)</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="5" data-poi-id="3235030" data-id="11967405" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/531cf927073399af213a9cdb.jpg_r_480x360x95_a40fbb7c.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="6">07</span>
+															<span class="name_txt">叶氏麻糍</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：厦门市思明区鼓浪屿龙头路街口</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="5" data-poi-id="3233639" data-id="11967406" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/4e14633cccb4e9a1213a9cdb.jpg_r_480x360x95_ad8d7c83.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="7">08</span>
+															<span class="name_txt">小眼镜大排档（湖滨中路店）</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：湖滨中路7号(近厦商怡庭快捷酒店（汇成店）)</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="5" data-poi-id="3231311" data-id="11967407" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/1084a3f2809b59f7ddb12cfb.jpg_r_480x360x95_ce3653d5.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="8">09</span>
+															<span class="name_txt">南普陀素菜</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：思明南路515号南普陀寺内</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="day_element_node" data-type="5" data-poi-id="3233780" data-id="11967436" style="display: block;">
+												<div class="element_inner">
+													<div class="element_pic_box">
+														<img src="/images/makeplan/cc264e61c810e83dddb12cfb.jpg_r_480x360x95_0a8a1002.jpg" ondragstart="return false" draggable="false" class="element_pic" />
+													</div>
+													<dl class="element_info_box">
+														<dt class="element_name lowie_hover">
+															<span class="poi_idx" data-idx="9">10</span>
+															<span class="name_txt">黄则和花生汤店(中山路总店)</span>
+														</dt>
+														<dd class="ele_base ele_addr">
+															<span class="addr_txt">地址：厦门市思明区中山路22-24号(肯德基对面)</span>
+															<span class="grayline">|</span>
+															<a href="http://travel.qunar.com/plan/5316588/edit#" class="view_nearby js_around">查看周边</a>
+														</dd>
+														<dd class="ele_base ele_memo js_edit_memo">点击添加备注</dd>
+													</dl>
+												</div>
+												<div class="day_option_box">
+													<div class="day_option_list">
+														<ul class="option_list clrfix">
+															<li class="option_li  js_edit">
+																<a>
+																	<i class="edit_icon"></i>编辑
+																</a>
+															</li>
+															<li class="option_li js_del">
+																<a href="javascript:;">
+																	<i class="del_icon"></i>删除
+																</a>
+															</li>
+															<li class="option_li last  js_move">
+																<a href="javascript:;">
+																	<i class="move_to"></i>移动到
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="day_move_list" style="display: none;">
+														<ul class="day_move_list_inner"></ul>
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="day_memo_box">
+											<div class="day_memo_ph" style="display: block;">添加当日备注</div>
+											<div class="day_memo_inner day_memo_inner_focus">
+												<textarea class="day_memo"></textarea>
+											</div>
+											<div class="errmsg"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="add_tool_box">
+								<dl>
+									<dt></dt>
+									<dd>
+										<a class="add_point js_other_add" type="place">
+											<span>地点</span>
+										</a>
+									</dd>
+									<dd>
+										<a class="add_hotel js_other_add" type="hotel">
+											<span>酒店</span>
+										</a>
+									</dd>
+									<dd>
+										<a class="add_trafficd js_other_add" type="traffic">
+											<span>交通</span>
+										</a>
+									</dd>
+									<dd>
+										<a class="add_note js_other_add" type="note">
+											<span>随记</span>
+										</a>
+									</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<div class="inner_right trip_info_box" id="trip_info_box">
+						<div class="trip_source_box" style="display: block;">
+							<div class="switch_source_tab_box clrfix" id="switch_tab_bpx">
+								<ul>
+									<li class="source_tab dest_tab selected">
+										<div class="tab_inner dest_title_box" id="dest_title_box">
+											<span class="dest_name">厦门</span>
+											<a href="http://travel.qunar.com/plan/5316588/edit#change_city" class="dest_change">切换城市</a>
+
+											<div class="add_dest_box" style="display: none;">
+												<div class="add_dest_box_inner">
+													<div class="city_list"></div>
+													<div class="hot_city" style="display: none;">
+														<h4 class="d_title">热门城市:</h4>
+
+														<p class="d_hot_city_box"></p>
+													</div>
+													<div class="city_sug_box">
+														<div class="d_city_sug">
+															<input type="text" class="city_sug_inp" placeholder="添加城市" />
+														</div>
+														<div class="sug_con"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="source_tab my_collect_tab">
+										<div class="tab_inner">
+											<i class="c_icon"></i>我的收集
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="source_detail_box" id="source_detail_box">
+								<div class="source_filter_box clrfix" id="source_filter_box">
+									<div class="source_type_box clrfix">
+										<ul>
+											<li class="source_type" data-type="4" data-bc="scenery_tab">
+												<span class="label">
+													<em class="cnt">热门景点</em>
+												</span>
+
+												<div class="select_arrow"></div>
+											</li>
+											<li class="dline"></li>
+											<li class="source_type selected" data-type="6" data-bc="hotel_tab">
+												<span class="label">
+													<em class="cnt">酒店</em>
+												</span>
+
+												<div class="select_arrow"></div>
+											</li>
+											<li class="dline"></li>
+											<li class="source_type" data-type="5" data-bc="food_tab">
+												<span class="label">
+													<em class="cnt">美食</em>
+												</span>
+
+												<div class="select_arrow"></div>
+											</li>
+											<li class="dline"></li>
+											<li class="source_type last">
+												<span class="label">
+													<em class="cnt">更多</em><i class="down_arrow"></i>
+												</span>
+											</li>
+										</ul>
+										<div class="sub_type_box" style="display: none;">
+											<div class="sub_type_inner">
+												<div class="sub_type" data-type="8" data-bc="shop_tab">
+													<a href="javascript:;" class="cnt">购物</a>
+												</div>
+												<div class="sub_type" data-type="21" data-bc="traffic_tab">
+													<a href="javascript:;" class="cnt">交通</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="source_search_box">
+										<div class="search_inp_box">
+											<input type="text" name="search" class="searh_inp" data-detect-oninput="1" />
+										</div>
+										<div class="search_ph"></div>
+										<div class="search_del"></div>
+										<div class="sug_con">
+											<div class="q-suggest" style="display: none; z-index: 500;"></div>
+										</div>
+									</div>
+								</div>
+								<div class="source_info_scroll_wrap">
+									<div class="source_detail_inner" id="source_detail_inner" style="height: 216px;">
+										<div class="source_detail_content">
+											<div id="route_box" class="sight_route_box">
+												<div class="route_wrap_dom" style="height: 266px;">
+													<div class="sight_route">
+														<div class="sight_route_name">
+															<a data-beacon="to_dest_route" target="_blank" href="http://travel.qunar.com/p-cs299914-beijing-xianlu?fid=14454#xl_144540">探秘北京经典五日游</a>
+															<a></a>
+														</div>
+														<a>
+															<p class="sight_route_desc">这条线路融合了皇家古迹、市井胡同、繁华商业区、高等学府、高科技园区，既可感受到北京的厚重沧桑亦可感受她的时尚繁华。</p>
+														</a>
+														<ol class="route_box">
+															<a> </a>
+															<li class="route_item">
+																<a> </a>
+																<ul>
+																	<a> </a>
+																	<li class="r_day_add_box">
+																		<a></a>
+																		<a data-order="1" data-routeid="14454" class="r_day_add" href="javascript:;"></a>
+																	</li>
+																	<li class="day">
+																		<div class="txt">
+																			<span>D1</span>
+
+																			<div class="icon"></div>
+																		</div>
+																	</li>
+																	<li class="poi">
+																		<span data-id="711995" class="poi_name">天安门广场</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="710603" class="poi_name">故宫</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="705480" class="poi_name">景山公园</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="705983" class="poi_name last">什刹海</span>
+																	</li>
+																</ul>
+															</li>
+															<li class="route_item">
+																<ul>
+																	<li class="r_day_add_box">
+																		<a data-order="2" data-routeid="14454" class="r_day_add" href="javascript:;"></a>
+																	</li>
+																	<li class="day">
+																		<div class="txt">
+																			<span>D2</span>
+
+																			<div class="icon"></div>
+																		</div>
+																	</li>
+																	<li class="poi">
+																		<span data-id="708991" class="poi_name">天坛公园</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="713871" class="poi_name">前门大街</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="703970" class="poi_name">中国国家大剧院</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="709624" class="poi_name last">西单</span>
+																	</li>
+																</ul>
+															</li>
+															<li class="route_item">
+																<ul>
+																	<li class="r_day_add_box">
+																		<a data-order="3" data-routeid="14454" class="r_day_add" href="javascript:;"></a>
+																	</li>
+																	<li class="day">
+																		<div class="txt">
+																			<span>D3</span>
+
+																			<div class="icon"></div>
+																		</div>
+																	</li>
+																	<li class="poi">
+																		<span data-id="703478" class="poi_name">八达岭长城</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="713994" class="poi_name last">明十三陵</span>
+																	</li>
+																</ul>
+															</li>
+															<li class="route_item">
+																<ul>
+																	<li class="r_day_add_box">
+																		<a data-order="4" data-routeid="14454" class="r_day_add" href="javascript:;"></a>
+																	</li>
+																	<li class="day">
+																		<div class="txt">
+																			<span>D4</span>
+
+																			<div class="icon"></div>
+																		</div>
+																	</li>
+																	<li class="poi">
+																		<span data-id="722952" class="poi_name">798艺术区</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="710538" class="poi_name last">三里屯</span>
+																	</li>
+																</ul>
+															</li>
+															<li class="route_item">
+																<ul>
+																	<li class="r_day_add_box">
+																		<a data-order="5" data-routeid="14454" class="r_day_add" href="javascript:;"></a>
+																	</li>
+																	<li class="day">
+																		<div class="txt">
+																			<span>D5</span>
+
+																			<div class="icon"></div>
+																		</div>
+																	</li>
+																	<li class="poi">
+																		<span data-id="710431" class="poi_name">颐和园</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="704630" class="poi_name">圆明园</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="712269" class="poi_name">北京大学</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="715110" class="poi_name last">清华大学</span>
+																	</li>
+																</ul>
+															</li>
+														</ol>
+														<div class="route_button">
+															<button data-routeid="14454" type="button" class="btn">添加到行程</button>
+														</div>
+													</div>
+													<div class="sight_route" style="display: block;">
+														<div class="sight_route_name">
+															<a data-beacon="to_dest_route" target="_blank" href="http://travel.qunar.com/p-cs299914-beijing-xianlu?fid=14455#xl_144550">品味北京文化三日游</a>
+															<a></a>
+														</div>
+														<a>
+															<p class="sight_route_desc">走着老北京的道儿，吃着地道的老北京小吃儿，看老北京几百年风云变迁。倘若想了解大都市背后的北京历史和文化，一定要放慢脚步，去胡同中寻找宅院，去博物馆看老物件。北京，作为六百多年的古都，绝不只是一个首都而已。</p>
+														</a>
+														<ol class="route_box">
+															<a> </a>
+															<li class="route_item">
+																<a> </a>
+																<ul>
+																	<a> </a>
+																	<li class="r_day_add_box">
+																		<a></a>
+																		<a data-order="1" data-routeid="14455" class="r_day_add" href="javascript:;"></a>
+																	</li>
+																	<li class="day">
+																		<div class="txt">
+																			<span>D1</span>
+
+																			<div class="icon"></div>
+																		</div>
+																	</li>
+																	<li class="poi">
+																		<span data-id="3562665" class="poi_name">张自忠路</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="707920" class="poi_name">段祺瑞执政府旧址</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="715825" class="poi_name">孔庙</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="715226" class="poi_name">国子监</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="5475392" class="poi_name last">五道营胡同</span>
+																	</li>
+																</ul>
+															</li>
+															<li class="route_item">
+																<ul>
+																	<li class="r_day_add_box">
+																		<a data-order="2" data-routeid="14455" class="r_day_add" href="javascript:;"></a>
+																	</li>
+																	<li class="day">
+																		<div class="txt">
+																			<span>D2</span>
+
+																			<div class="icon"></div>
+																		</div>
+																	</li>
+																	<li class="poi">
+																		<span data-id="722949" class="poi_name">南锣鼓巷</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="5852834" class="poi_name">帽儿胡同</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="702458" class="poi_name">茅盾故居</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="7480225" class="poi_name">郭沫若纪念馆</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="715478" class="poi_name">恭王府</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="3721859" class="poi_name last">后海</span>
+																	</li>
+																</ul>
+															</li>
+															<li class="route_item">
+																<ul>
+																	<li class="r_day_add_box">
+																		<a data-order="3" data-routeid="14455" class="r_day_add" href="javascript:;"></a>
+																	</li>
+																	<li class="day">
+																		<div class="txt">
+																			<span>D3</span>
+
+																			<div class="icon"></div>
+																		</div>
+																	</li>
+																	<li class="poi">
+																		<span data-id="704578" class="poi_name">北京鲁迅博物馆</span>
+																		<i>&gt;</i>
+																	</li>
+																	<li class="poi">
+																		<span data-id="708889" class="poi_name last">首都博物馆</span>
+																	</li>
+																</ul>
+															</li>
+														</ol>
+														<div class="route_button">
+															<button data-routeid="14455" type="button" class="btn">添加到行程</button>
+														</div>
+													</div>
+												</div>
+												<div class="tip_box hide" style="display: block;">
+													<span class="tip">
+														更多线路<i class="icon"></i>
+													</span>
+												</div>
+											</div>
+											<div class="poi_list_box" id="poi_list_box">
+												<ul class="poi_list">
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/JhS1_tJ-Eype3076J720.jpg" class="poi_img" style="margin-left: -10.5px; margin-top: 0px; width: 189px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门泰谷酒店</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">高档型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">575</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门市思明区鹭江道2号第一广场东座</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/JhS1_t5-Xb9uI2nMJ720.jpg" class="poi_img" style="margin-left: -10.3035343035343px; margin-top: 0px; width: 188.607068607069px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门鼓浪屿漫漫悠悠旅馆</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">498</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;福建省厦门鼓浪屿内厝澳路100号</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/JhS1_tJNKwGzkHxLJ720.jpg" class="poi_img" style="margin-left: -13.7586206896552px; margin-top: 0px; width: 195.51724137931px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门海悦山庄酒店</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">豪华型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">882</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门市思明区环岛南路3999号</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/Z7-ECTkfJLnkHZE4Z720.jpg" class="poi_img" style="margin-left: -10.5px; margin-top: 0px; width: 189px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门瑞颐大酒店</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">豪华型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">803</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门市思明区鹭江道12号</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/Z7-xuT90b1si1yUYZ720.jpg" class="poi_img" style="margin-left: -24px; margin-top: 0px; width: 216px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门毕思特酒店</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">舒适型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">436</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门市思明区局中北街245号</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/JhS1_t5kH4mCh8ecJ720.jpg" class="poi_img" style="margin-left: 0px; margin-top: 0px; width: 168px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门鼓浪屿国王盒子度假屋</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">舒适型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">158</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门思明区鼓浪屿福州路125号（近轮渡，三丘田及钢琴码头）</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/JhS1_t5EI3En2pljJ720.jpg" class="poi_img" style="margin-left: 0px; margin-top: -59.6774847870183px; width: 168px; height: 245.354969574037px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门探索酒店</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">高档型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">399</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门市湖里区禾山街道护安路723号</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/JhS1_thxZBoLg5TnJ720.jpg" class="poi_img" style="margin-left: -10.5px; margin-top: 0px; width: 189px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门中山印象酒店</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">舒适型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">233</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门市中山路108号之118</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/NNNN2dcL07JlMumSN720.jpg" class="poi_img" style="margin-left: -10.8953974895397px; margin-top: 0px; width: 189.79079497908px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">速8酒店厦门思明南路厦大店</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">经济型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">175</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门市思明区思明南路485号</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+													<li class="poi_item " data-type="6" data-city="厦门">
+														<div class="p_left_box">
+															<div class="poi_img_box">
+																<img src="/images/makeplan/JhS1_thxhipmCyoYJ720.jpg" class="poi_img" style="margin-left: -10.8539325842697px; margin-top: 0px; width: 189.707865168539px; height: 126px; max-width: none;" />
+															</div>
+
+															<div class="distance_box view_position js_view_position ">
+																<div class="distance_bg"></div>
+																<div class="distance_con">查看位置</div>
+															</div>
+														</div>
+														<dl class="poi_box">
+															<dt class="poi_name">
+																<a href="http://travel.qunar.com/plan/5316588/edit#" target="_blank" class="name_wrap">
+																	<strong class="main_title lowie_hover">厦门万佳东方酒店</strong>
+																</a>
+																<span class="subtitle"></span>
+															</dt>
+															<dd class="poi_info">舒适型</dd>
+															<dd class="poi_info price">
+																价格:&nbsp; <em class="rmb">￥</em> <em class="num">198</em>起
+															</dd>
+															<dd class="poi_info">地址:&nbsp;厦门思明区虎园路1号</dd>
+															<dd class="poi_button">
+																<button class="btn" type="button">添加到行程</button>
+															</dd>
+														</dl>
+
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="source_query_ph" id="source_query_ph" style="display: none;">
+									<div class="source_query_ph_inner">
+										<div class="source_query_ph_bg">
+											<p class="txt">这个地方暂时还没没有信息哦</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="collect_box" class="collect_box" style="display: none;"></div>
+						</div>
+						<div class="poi_detail_box hide" id="poi_detail" style="display: none;">
+							<div class="poi_detail_inner">
+								<div class="top_buttons">
+									<div class="left_btn_box">
+										<button type="button" class="close_btn">关闭</button>
+									</div>
+									<div class="right_btn_box">
+										<button type="button" class="add_btn">添加到行程</button>
+									</div>
+								</div>
+								<div class="box poi_name_box">
+									<h3 class="main_title" style="margin-top: 14px;">
+										<a href="http://travel.qunar.com/place/poi/3235030?from=travelplan" title="叶氏麻糍" target="_blank">叶氏麻糍</a>
+									</h3>
+								</div>
+								<div class="poi_detail_scroll_wrap">
+									<div class="poi_detail_wrap" style="height: 240px;">
+										<div class="poi_detail_scroll_content">
+											<div class="poi_info_wrap" id="poi_info_wrap">
+												<div class="box poi_summary_box">
+													<div class="poi_img_box">
+														<ul class="poi_img_list" style="width: 3678px">
+															<li class="img_item" style="width: 613px">
+																<img src="/images/makeplan/531cf927073399af213a9cdb.jpg_r_480x360x95_a40fbb7c.jpg" class="poi_img" />
+															</li>
+															<li class="img_item" style="width: 613px">
+																<img src="/images/makeplan/d1e286f16521e8bcddb12cfb.jpg_r_480x360x95_5a481431.jpg" class="poi_img" />
+															</li>
+															<li class="img_item" style="width: 613px">
+																<img src="/images/makeplan/6a83842659b58ccdddb12cfb.jpg_r_480x360x95_5d87ca17.jpg" class="poi_img" />
+															</li>
+															<li class="img_item" style="width: 613px">
+																<img src="/images/makeplan/19f8eb07dfe4a9cfddb12cfb.jpg_r_480x360x95_239dbd3e.jpg" class="poi_img" />
+															</li>
+															<li class="img_item" style="width: 613px">
+																<img src="/images/makeplan/a878003ba167695dddb12cfb.jpg_r_480x360x95_1a31c50c.jpg" class="poi_img" />
+															</li>
+															<li class="img_item" style="width: 613px">
+																<img src="/images/makeplan/95774af17d9e909fddb12cfb.jpg_r_480x360x95_cc0aac63.jpg" class="poi_img" />
+															</li>
+														</ul>
+														<a class="btn prev" href="javascript:;"></a>
+														<a class="btn next" href="javascript:;"></a>
+													</div>
+													<div class="poi_summary no_top_border">
+														<strong class="label">简介</strong>
+
+														<p class="summary">“叶氏麻糍”是鼓浪屿的一道风景线，成为了鼓浪屿龙头路的三岔口一种不可错过的小吃，至今已有百年历史。据说是岛上唯一可以占道经营的小摊。麻糍全是老板手工制作的。 在大多数人看来，百年的发展仍停留在一个小摊车似乎不可思议，但小本生意就一直这么经营了下来。摊主拉出摊车下面的抽屉，取出糯米糍粑，裹入花生碎、黑白芝麻碎和糖粉混合成的馅料再揉成团，滚上一层黑芝麻粉，一份“麻糍”就做好了。味道甜而不腻，糯而不粘，好吃得很。一元钱，就让海岛上往来的游客有了一个香甜的回忆。</p>
+													</div>
+												</div>
+												<div class="box poi_info_box">
+													<div class="poi_info_inner">
+														<dl class="row ">
+															<dt class="label">时间</dt>
+															<dd class="txt">8:00开始</dd>
+														</dl>
+														<dl class="row ">
+															<dt class="label">人均</dt>
+															<dd class="txt">8元</dd>
+														</dl>
+														<dl class="row ">
+															<dt class="label">交通</dt>
+															<dd class="txt">
+																<p>
+																	<strong>轮渡</strong> <br />
+																</p>
+
+																<p>乘坐轮渡到【鼓浪屿钢琴码头】，向前行进100米多有到达龙头路，步行前往即可。</p>
+															</dd>
+														</dl>
+														<dl class="row ">
+															<dt class="label">地址</dt>
+															<dd class="txt">厦门市思明区鼓浪屿龙头路街口</dd>
+														</dl>
+														<dl class="row ">
+															<dt class="label">电话</dt>
+															<dd class="txt">13959215136</dd>
+														</dl>
+													</div>
+												</div>
+											</div>
+											<div class="poi_comment_wrap" id="poi_comment_wrap">
+												<div class="box poi_comment_box">
+													<div class="comment_label">
+														点评(
+														<span class="num">57</span>
+														)
+													</div>
+													<div class="comments">
+														<div class="b_comment_box">
+															<ul style="display: block;">
+																<li class="e_comment_item clrfix" id="cmt_item_1851774">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/1851774" target="_blank">不过没有传说中那么好吃</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_5"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">龙头路全是好吃的。。。出名的叶氏麻糍虽然是个小摊但是很容易找。。。因为有很多人排队哦。。。。十块钱一袋，味道还好，不过没有传说中那么好吃</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2013-04-08
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/467268/view" target="_blank">厦门自助纯玩休闲六日</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/1851774" target="_blank">回复</a>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/121547582@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/121547582.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/121547582@qunar" target="_blank">7不消你</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_1847966">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/1847966" target="_blank">俺只要了黑芝麻的, 味道很不错呢</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_5"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">在黄胜记对面右边的小路口就是这家小摊了，黑白芝麻味的是20元每份，黑OR白芝麻味是10元每份，俺只要了黑芝麻的，味道很不错呢，可惜这东西不耐放，不然真得带点回来，大家就尝尝好了，因为好东西还在后面呢。</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2013-04-01
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/1161572/view" target="_blank">一一的周末在厦门</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/1847966" target="_blank">回复</a>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/125408140@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/125408140.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/125408140@qunar" target="_blank">vsie5353</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_2534665">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/2534665" target="_blank">在中山路上有，长得黑黑的，口感糯糯的，是...</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_3"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">在中山路上有，长得黑黑的，口感糯糯的，是特色，可以尝试。11元一份</div>
+																			<div class="e_comment_imgs_box">
+																				<div class="e_comment_imgs clrfix">
+																					<ul class="base_fl">
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/2534665" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/20c7aacc7585151addb12cfb.jpg_r_480x360x95_4b80962f.jpg" />
+																							</a>
+																						</li>
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/2534665" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/cf0e43990df53b54ddb12cfb.jpg_r_480x360x95_2ab8dff1.jpg" />
+																							</a>
+																						</li>
+																					</ul>
+																					<span class="img_count"></span>
+																				</div>
+																			</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2014-01-27
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/2871896/view" target="_blank">吃货闺蜜厦门行之吃到停不下来啊停不下来啊</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/2534665" target="_blank">回复</a>
+																							<span class="num">(1)</span>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/133492050@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/133492050.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/133492050@qunar" target="_blank">VLC-闺蜜旅行日记</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_1899936">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/1899936" target="_blank">香香的，甜甜的，不错</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_5"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">之前没去的时候看网上推荐的，说是一元一个，其实是11块钱一盒，里面好像有十几个。香香的，甜甜的，不错</div>
+																			<div class="e_comment_imgs_box">
+																				<div class="e_comment_imgs clrfix">
+																					<ul class="base_fl">
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/1899936" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/67ec20c468d42789ddb12cfb.jpg_r_480x360x95_e55617d0.jpg" />
+																							</a>
+																						</li>
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/1899936" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/8394e38563ceaa64ddb12cfb.jpg_r_480x360x95_4cd0ee7a.jpg" />
+																							</a>
+																						</li>
+																					</ul>
+																					<span class="img_count"></span>
+																				</div>
+																			</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2013-06-19
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/1650098/view" target="_blank">一个人在厦门5天5夜漫游</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/1899936" target="_blank">回复</a>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/128453690@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/128453690.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/128453690@qunar" target="_blank">水慕幽蓝</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_3047417">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/3047417" target="_blank">这个小车真心小，好不容易注意到他的~一袋...</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_3"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">这个小车真心小，好不容易注意到他的~一袋10元~吃的图在后面~~</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2014-04-19
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/3136550/view" target="_blank">一个人的厦门之旅</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/3047417" target="_blank">回复</a>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/625382@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/625382.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/625382@qunar" target="_blank">smileangel0</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_3414981">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/3414981" target="_blank">白色还不错就糯米的口感稍微差点</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_3"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">在龙头路和中山路都有吃，黑色的这种有点甜了，白色还不错就糯米的口感稍微差点，红色这个是红糖的，这个不错，喜欢吃</div>
+																			<div class="e_comment_imgs_box">
+																				<div class="e_comment_imgs clrfix">
+																					<ul class="base_fl">
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/3414981" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/c877ce79e1c9b3e1cdb.jpg_r_480x360x95_66bad901.jpg" />
+																							</a>
+																						</li>
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/3414981" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/ebbfe78a6233ee1acdb.jpg_r_480x360x95_78d7a957.jpg" />
+																							</a>
+																						</li>
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/3414981" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/f2d2e15539c50e42cdb.jpg_r_480x360x95_5e83f62c.jpg" />
+																							</a>
+																						</li>
+																					</ul>
+																					<span class="img_count"></span>
+																				</div>
+																			</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>2014-11-30</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/3414981" target="_blank">回复</a>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/166449058@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/166449058.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/166449058@qunar" target="_blank">pehd7755</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_1958876">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/1958876" target="_blank">麦芽糖也挺好吃的</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_5"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">虽然黑黑的，但是其实味道还可以，小哥的手艺还是比较快的，生意也不错。麦芽糖也挺好吃的，离开厦门时有带一些回家。</div>
+																			<div class="e_comment_imgs_box">
+																				<div class="e_comment_imgs clrfix">
+																					<ul class="base_fl">
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/1958876" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/3d324ec56236f038ddb12cfb.jpg_r_480x360x95_524cd6bc.jpg" />
+																							</a>
+																						</li>
+																					</ul>
+																					<span class="img_count"></span>
+																				</div>
+																			</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2013-07-28
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/2163365/view" target="_blank">厦门行</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/1958876" target="_blank">回复</a>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/1067799247@sina" target="_blank">
+																				<img height="45" width="45" src="./public/0" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/1067799247@sina" target="_blank">jasmina哲@sin</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_1854940">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/1854940" target="_blank">味道甜而不腻，糯而不粘，好吃得很</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_2"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">鼓浪屿龙头路的三岔口有一种不可错过的小吃“叶氏麻糍”，至今已有 百年历史。在大多数人看来，百年的发展仍停留在一个小摊车似乎不可思议，但小本生意就一直这么经营了下来。摊主拉出摊车下面的抽屉，取出糯米糍粑，裹入花生碎、黑白芝麻碎和糖粉混合成的馅料再揉成团，滚上一层黑芝麻粉，一份“麻糍”就做好了。味道甜而不腻，糯而不粘，好吃得很。一元钱，就让海岛上往来的游客有了一个香甜的回忆。</div>
+																			<div class="e_comment_imgs_box">
+																				<div class="e_comment_imgs clrfix">
+																					<ul class="base_fl">
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/1854940" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/636509604fdf1cbeddb12cfb.jpg_r_480x360x95_10feaee5.jpg" />
+																							</a>
+																						</li>
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/1854940" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/d8ccfdaab222746eddb12cfb.jpg_r_480x360x95_5d89bff1.jpg" />
+																							</a>
+																						</li>
+																					</ul>
+																					<span class="img_count"></span>
+																				</div>
+																			</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2013-04-15
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/1283725/view" target="_blank">厦门、鼓浪屿3日游</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/1854940" target="_blank">回复</a>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/128080278@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/128080278.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/128080278@qunar" target="_blank">x0xo</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_1996917">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/1996917" target="_blank">我们中山路和龙头路上都吃了，没有攻略里做...</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_3"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">我们中山路和龙头路上都吃了，没有攻略里做的那么大，11元一盒，口味还行。</div>
+																			<div class="e_comment_imgs_box">
+																				<div class="e_comment_imgs clrfix">
+																					<ul class="base_fl">
+																						<li>
+																							<a data-beacon="comment_pic" href="http://travel.qunar.com/place/comments/1996917" target="_blank">
+																								<img class="cmt_img" src="/images/makeplan/e007e5570d83b542ddb12cfb.jpg_r_480x360x95_a9e89b7e.jpg" />
+																							</a>
+																						</li>
+																					</ul>
+																					<span class="img_count"></span>
+																				</div>
+																			</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2013-08-16
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/2273810/view" target="_blank">南京出发去厦门－美食的天下</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/1996917" target="_blank">回复</a>
+																							<span class="num">(1)</span>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/134306190@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/134306190.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/134306190@qunar" target="_blank">钰儿宝宝</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+																<li class="e_comment_item clrfix" id="cmt_item_1846608">
+																	<div class="e_comment_main">
+																		<div class="e_comment_main_inner">
+																			<div class="e_comment_title" data-beacon="comment_title">
+																				<a href="http://travel.qunar.com/place/comments/1846608" target="_blank">很出名的小吃，排了很多人</a>
+																			</div>
+																			<div class="e_comment_star_box">
+																				<span class="total_star">
+																					<span class="cur_star star_3"></span>
+																				</span>
+																			</div>
+																			<div class="e_comment_content">很出名的小吃，排了很多人。感觉和北方的凉糕差不多就是米有馅</div>
+																			<div class="e_comment_add_info">
+																				<ul>
+																					<li>
+																						2013-03-29
+																						<span class="e_comment_from_book">
+																							发表于攻略
+																							<a data-beacon="comment_travelbook" href="http://travel.qunar.com/travelbook/books/detail/finish/1207110/view" target="_blank">厦门浅浅游</a>
+																						</span>
+																					</li>
+																					<li class="last e_comment_reply_box">
+
+																						<div class="e_comment_reply pngfix">
+																							<a data-beacon="reply" href="http://travel.qunar.com/place/comments/1846608" target="_blank">回复</a>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="e_comment_usr">
+																		<div class="e_comment_usr_pic">
+																			<a href="http://travel.qunar.com/space/125397116@qunar" target="_blank">
+																				<img height="45" width="45" src="/images/makeplan/125397116.png" />
+																			</a>
+																		</div>
+																		<div class="e_comment_usr_name">
+																			<a href="http://travel.qunar.com/space/125397116@qunar" target="_blank">冷浅浅</a>
+																		</div>
+																		<div class="e_comment_usr_total"></div>
+																	</div>
+																</li>
+
+															</ul>
+														</div>
+														<div class="tip_box">
+															<span class="tip">请稍后</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="around_box" class="around_box hide" style="display: none;">
+							<div class="around_top_box">
+								<div class="around_top_inner">
+									<div class="at_info_left">
+										<div class="at_info_name">
+											<h4 class="at_poi_name"></h4>
+										</div>
+										<div class="at_type_box">
+											<div class="select_box">
+												<div class="txt_label">
+													<span class="txt">景点</span>
+													<a class="arrow down" href="javascript:;"></a>
+												</div>
+												<div class="list_box hide" style="display: none;">
+													<ul class="lists">
+														<li class="item" data-type="4">
+															<a href="http://travel.qunar.com/plan/5316588/edit#">景点</a>
+														</li>
+														<li data-type="6" class="item">
+															<a href="http://travel.qunar.com/plan/5316588/edit#">酒店</a>
+														</li>
+														<li class="item" data-type="5">
+															<a href="http://travel.qunar.com/plan/5316588/edit#">美食</a>
+														</li>
+														<li class="item" data-type="8">
+															<a href="http://travel.qunar.com/plan/5316588/edit#">购物</a>
+														</li>
+														<li class="item last" data-type="21">
+															<a href="http://travel.qunar.com/plan/5316588/edit#">交通</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="at_info_right">
+										<div class="at_btn_box">
+											<a href="http://travel.qunar.com/plan/5316588/edit#">关闭</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="around_main_box">
+								<div class="around_main_win">
+									<div class="around_main" style="height: 269px;">
+										<div class="around_main_content">
+											<ul class="poi_list"></ul>
+											<div class="tip_box">
+												<span class="tip">正在载入...</span>
+											</div>
+										</div>
+									</div>
+									<div class="source_query_ph">
+										<div class="source_query_ph_inner">
+											<div class="source_query_ph_bg">
+												<p class="txt">没有查询到周边数据</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="map_box hide" id="map_box" style="display: none;">
+							<div class="map_op_box">
+								<div class="map_op_inner">
+									<div class="map_days_box">
+										<h4 class="md_name"></h4>
+									</div>
+									<div class="map_right_box">
+										<button type="button" class="close_btn">关闭地图</button>
+									</div>
+								</div>
+							</div>
+							<div class="map_con">
+								<div id="map_container" class="map_inner" style="height: 271px;">
+									<div class="bmap"></div>
+									<div class="gmap"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="traffic_view" class="traffic_box clrfix hide">
+		<div class="traffic_info_box">
+			<div class="info_wrap">
+				<div class="main_traffic_info">
+					<div class="t_top clrfix">
+						<div class="t_t_left">
+							<h2 class="t_t_title">交通信息</h2>
+						</div>
+						<div class="t_t_right">
+							<div class="select_box">
+								<div class="txt_label">
+									<span class="txt">第1天</span>
+									<a class="arrow down" href="javascript:;"></a>
+								</div>
+								<div class="list_box"></div>
+							</div>
+						</div>
+					</div>
+					<div class="t_middle">
+						<div class="info_inner">
+							<div class="info_win">
+								<div class="info_content">
+									<ul class="t_ele_list"></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="t_bottom">
+						<div class="t_button_box">
+							<button class="btn" type="button">保存,继续编辑</button>
+						</div>
+					</div>
+				</div>
+				<div class="detail_traffic">
+					<div class="d_top">
+						<a href="http://travel.qunar.com/plan/5316588/edit#" class="close_btn"></a>
+
+						<div class="d_t_tab_box">
+							<ul class="d_t_tabs clrfix">
+								<li data-mode="transit" class="d_t_tab selected">
+									<div class="d_t_tab_txt">公交</div>
+								</li>
+								<li data-mode="driving" class="d_t_tab">
+									<div class="d_t_tab_txt">自驾</div>
+								</li>
+								<li data-mode="walking" class="d_t_tab">
+									<div class="d_t_tab_txt">步行</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="d_middle">
+						<div class="detail_route_box">
+							<div class="d_r_info">
+								<div class="d_r_info_win">
+									<div class="d_r_info_content"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- around_view -->
+				<div id="around_view" class="around_view">
+					<!-- around_top -->
+					<div class="around_top clrfix">
+						<h2 class="tit"></h2>
+
+						<div class="top_right">
+							<div class="select_box">
+								<div class="txt_label">
+									<span class="txt">酒店</span>
+									<a class="arrow down" href="javascript:;"></a>
+								</div>
+								<div class="list_box">
+									<ul class="lists">
+										<li class="item" data-type="4">
+											<a href="http://travel.qunar.com/plan/5316588/edit#">景点</a>
+										</li>
+										<li data-type="6" class="item">
+											<a href="http://travel.qunar.com/plan/5316588/edit#">酒店</a>
+										</li>
+										<li class="item" data-type="5">
+											<a href="http://travel.qunar.com/plan/5316588/edit#">美食</a>
+										</li>
+										<li class="item" data-type="8">
+											<a href="http://travel.qunar.com/plan/5316588/edit#">购物</a>
+										</li>
+										<li class="item last" data-type="21">
+											<a href="http://travel.qunar.com/plan/5316588/edit#">交通</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /around_top -->
+					<!-- around_main -->
+					<div class="around_main">
+						<div class="main_cont"></div>
+					</div>
+					<!-- /around_main -->
+					<!-- around_btm -->
+					<div class="around_btm">
+						<a class="btn" type="button">取消查看周边</a>
+					</div>
+					<!-- /around_btm -->
+				</div>
+				<!-- /around_view -->
+			</div>
+		</div>
+		<div class="traffic_map_box">
+			<div class="mark_suggest">
+				<div class="container">
+					<div class="btm"></div>
+					<div class="input_box">
+						<input class="mark_suggest_inp" type="text" maxlength="20" value="输入熟悉的地点再标记" />
+					</div>
+				</div>
+			</div>
+			<div class="map_container">
+				<div class="map js_baidu"></div>
+				<div class="map js_google"></div>
+			</div>
+			<div class="js_move_label move_ct">
+				<div class="move_body">
+					<div class="cursor"></div>
+					<div class="move_label">按住鼠标左键拖动地图，点击标记位置</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/js/jquery-1.11.2.min.js"></script>
+	<script src="/js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+	<script src="/js/makeplan/trip_plan_core.js"></script>
+	<script src="/js/makeplan/makeplan.js"></script>
+
+	<div class="msg_info_box hide" id="msg_info_box">
+		<div class="msg_info_box_inner">
+			<div class="msg_content">
+				<img src="/images/makeplan/tan.gif" />
+				<span></span>
+			</div>
+		</div>
+	</div>
+
+	<div id="dlg_mask_1" class="dlg_mask" style="z-index: 100001; display: none;">
+		<iframe class="dlg_miframe" frameborder="0" src="about:blank"></iframe>
+	</div>
+
+	<div class="g_dlg_box" id="dlg1" style="z-index: 100011; width: 1567px; height: 805px; position: fixed; display: none;">
+		<div class="b_dialog b_memo_box g_dlg_wrap_css3" style="position: absolute; left: 533px; top: 220px;">
+			<div class="js_content">
+				<div class="e_dialog_hd paddingpatch">添加旅行备注</div>
+				<div class="e_dialog_ct">
+					<div class="textarea_wrapper">
+						<div class="text_ct">
+							<textarea class="textarea js_textarea" onkeyup="words_deal();"></textarea>
+						</div>
+						<div class="font_counter">
+							<span class="current">0</span>
+							/2000字
+						</div>
+						<div class="error_msg" style="display: none;">最多可输入2000字</div>
+					</div>
+				</div>
+				<div class="e_dialog_ft">
+					<a class="btn_foot cancel js_close" href="#">取消</a>
+					<a class="btn_foot ok js_save" href="#">确定</a>
+				</div>
+				<a title="关闭" class="btn_close js_close js_close_new pngfix" href="#">x</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="g_dlg_box repeat" id="dlg2" style="z-index: 100021; width: 1567px; height: 805px; position: fixed; display: none;">
+		<div style="position: absolute; width: 610px; left: 478px; top: 134px;" class="b_dialog js_dialog g_dlg_wrap_css3 custom_dialog">
+			<div class="e_dialog_hd paddingpatch">添加酒店</div>
+			<div class="e_dialog_ct js_content">
+				<div class="ct_cont"></div>
+				<form style="display: none;" class="b_place_wrap">
+					<div style="display: none;" class="b_poi_pro clrfix">
+						<div class="b_plc_box clrfix">
+							<img class="fl" src="http://img1.qunarzz.com/p/p18/201308/05/cc2dffa36ecadbaa93835fbb.jpg_180x120_2b8d0597.jpg" style="width: 160px; height: 120px;" />
+
+							<div class="b_plc_info">
+								<ul>
+									<li class="bp_tit">
+										<span class="bp_name_ch">北京首都大酒店</span>
+										<span class="bp_name_en">beijing hotel</span>
+									</li>
+									<li></li>
+									<li>地址：法国王府井大街</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="b_poi_custom">
+						<div class="b_tr b_tr_name clrfix">
+							<div class="b_ipt_bx clrfix b_ipt_bx_name">
+								<label for="p_name" class="b_ipt_name"> <span class="star">*</span>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+								</label>
+
+								<div class="b_ipt_ct">
+									<div class="b_input_box">
+										<input data-detect-oninput="2" class="tx_ipt" placeholder="请输入名称" name="name" autocomplete="off" type="text" />
+
+										<div class="sug_poi_box">
+											<div style="display: none; z-index: 500;" class="q-suggest"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="b_tip"></div>
+						</div>
+						<div class="b_tr b_tr_typecity clrfix">
+							<div class="b_ipt_bx b_ipt_bx_ty clrfix">
+								<label for="name" class="b_ipt_name"> <span class="star">*</span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：
+								</label>
+
+								<div class="b_ipt_ct">
+									<div class="b_cs_sel_wrap">
+										<input value="16" class="valipt" name="type_id" data-type="number" readonly="true" type="hidden"/> 
+										<input class="cs_sel" readonly="true" type="text" />
+										<ul style="display: none;" class="cs_option">
+											<li style="display: none;" val="16">
+												<a href="javascript:;">景点</a>
+											</li>
+											<li style="display: list-item;" val="18">
+												<a href="javascript:;">美食</a>
+											</li>
+											<li style="display: list-item;" val="20">
+												<a href="javascript:;">购物</a>
+											</li>
+											<li style="display: list-item;" val="21">
+												<a href="javascript:;">交通</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="b_ipt_bx b_ipt_bx_cy clrfix">
+								<label for="name" class="b_ipt_name">城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市：</label>
+
+								<div class="b_ipt_ct">
+									<div class="b_input_box">
+										<input value="299914" class="ipt_cityid" data-type="number" name="cityId" type="hidden" /> 
+										<input value="6" class="ipt_disttype" data-type="number" name="ipt_disttype" type="hidden" /> 
+										<input data-detect-oninput="1" class="tx_ipt ipt_cityname" name="cityName" autocomplete="off" type="text" />
+
+										<div class="b_cy_sug">
+											<div style="display: none; z-index: 500;" class="q-suggest city_sug"></div>
+										</div>
+									</div>
+								</div>
+								<div class="b_tip"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="b_tr clrfix">
+						<div class="b_ipt_bx b_ipt_box_memo clrfix">
+							<label class="b_ipt_name">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
+
+							<div class="b_ipt_ct">
+								<div class="b_txarea_box">
+									<textarea class="b_txarea memo_virtual" name="memo"></textarea>
+								</div>
+								<div class="tip"></div>
+							</div>
+						</div>
+					</div>
+
+				</form>
+				<form style="display: block;" class="b_place_wrap show_wrap">
+					<div style="display: block;" class="b_poi_pro clrfix">
+						<div class="b_plc_box clrfix">
+							<img style="width: 160px; height: 120px;" src="http://userimg.qunar.com/imgs/201410/25/GIGWX47MW65_c6ZO7720.jpg" class="fl" />
+
+							<div class="b_plc_info">
+								<ul>
+									<li class="bp_tit">
+										<span class="bp_name_ch">北京富山国际青年旅舍</span>
+										<span class="bp_name_en"></span>
+									</li>
+									<li></li>
+									<li>地址：北京市东城区车辇店胡同21号</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div style="display: none;" class="b_poi_custom">
+						<div class="b_tr b_tr_name clrfix">
+							<div class="b_ipt_bx clrfix b_ipt_bx_name">
+								<label for="p_name" class="b_ipt_name"> <span class="star">*</span>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+								</label>
+
+								<div class="b_ipt_ct">
+									<div class="b_input_box">
+										<input data-detect-oninput="4" class="tx_ipt" placeholder="请输入名称" name="name" autocomplete="off" type="text" />
+
+										<div class="sug_poi_box">
+											<div style="display: none; z-index: 500;" class="q-suggest"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="b_tip"></div>
+						</div>
+						<div class="b_tr b_tr_typecity clrfix">
+							<div class="b_ipt_bx b_ipt_bx_cy clrfix">
+								<label for="name" class="b_ipt_name">城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市：</label>
+
+								<div class="b_ipt_ct">
+									<div class="b_input_box">
+										<input value="299914" class="ipt_cityid" data-type="number" name="cityId" type="hidden" /> <input value="6" class="ipt_disttype" data-type="number" name="ipt_disttype" type="hidden" /> <input data-detect-oninput="3" class="tx_ipt ipt_cityname" name="cityName" autocomplete="off" type="text" />
+
+										<div class="b_cy_sug">
+											<div style="display: none; z-index: 500;" class="q-suggest city_sug"></div>
+										</div>
+									</div>
+								</div>
+								<div class="b_tip"></div>
+							</div>
+						</div>
+					</div>
+					<div style="display: block;" class="b_tr clrfix hotel_expand_tr hotel_expand_show">
+						<div class="b_ipt_bx b_ipt_box_startdate clrfix">
+							<label class="b_ipt_name">入住日期：</label>
+
+							<div class="b_ipt_ct">
+								<div class="b_input_box b_ipt_date">
+									<div class="qunar-dp dpstartdate">
+										<div class="dp-info">
+											<b></b>
+											<span class="dp-text">周六</span>
+										</div>
+										<input maxlength="10" class="tx_ipt textbox" name="startDate" value="2014-09-21" readonly="readonly" type="text" />
+
+										<div style="display: none;" class="q-datepicker"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="b_ipt_bx b_ipt_box_enddate clrfix">
+							<label class="b_ipt_name">离店日期：</label>
+
+							<div class="b_ipt_ct">
+								<div class="b_input_box b_ipt_date">
+									<div class="qunar-dp dpstartdate">
+										<div class="dp-info">
+											<b></b>
+											<span class="dp-text">周六</span>
+										</div>
+										<input readonly="readonly" maxlength="10" class="tx_ipt textbox" placeholder="选择离开日期" type="text" />
+
+										<div style="display: none;" class="q-datepicker"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="b_msgbox"></div>
+					</div>
+					<div class="b_tr clrfix">
+						<div class="b_ipt_bx b_ipt_box_memo clrfix">
+							<label class="b_ipt_name">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
+
+							<div class="b_ipt_ct">
+								<div class="b_txarea_box">
+									<textarea class="b_txarea memo_virtual" name="memo"></textarea>
+								</div>
+								<div class="tip"></div>
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<div class="e_dialog_ft">
+				<a href="javascript:;" class="btn_cancel js_close">取 消</a>
+				<a href="javascript:;" class="btn_confirm">保 存</a>
+			</div>
+			<a href="#" class="btn_close js_close" title="关闭">x</a>
+		</div>
+	</div>
+
+	<div class="del_confirm_dlg" id="del_confirm_dlg" style="top: 197px; left: 702.546875px; z-index: 100021; display: none;">
+		<div class="del_confirm_inner">
+			<p class="cf_content">
+				<em class="cf_icon"></em>
+				<span class="cf_msg">确认要删除吗?</span>
+			</p>
+			<div class="buttons">
+				<a href="javascript:;" class="cancel">取消</a>
+				<a href="javascript:;" class="confirm">确定</a>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

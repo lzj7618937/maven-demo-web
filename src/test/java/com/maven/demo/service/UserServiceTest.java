@@ -28,7 +28,7 @@ import com.maven.demo.service.UserService;
 // @Ignore
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:root-context.xml" })
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
 @Transactional
 @TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
 public class UserServiceTest {

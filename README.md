@@ -79,7 +79,7 @@ sudo netstat -anp | grep 8080 8009 8005
 ps -aux | grep httpd
 sudo kill -9 2352
 
- ps -ef | grep httpd
+ps -ef | grep httpd
 
 -------------------------查看服务--------------------------------------
 http://gm100861.blog.51cto.com/1930562/950066
@@ -91,6 +91,15 @@ http://gm100861.blog.51cto.com/1930562/950066
 --------------------------修改环境变更-------------------------------
 sudo vi mvn compile
 sudo source /etc/profile
+
+-------------------------修改系统自动启动进程-------------------------------
+lrwxrwxrwx 1 root root 28 11月 23 07:39 wdapache -> /www/wdlinux/init.d/wdapache
+jaylee@jaylee-ThinkPad-T440s:/etc/init.d$ sudo rm wdapache
+[sudo] password for jaylee:
+jaylee@jaylee-ThinkPad-T440s:/etc/init.d$ ls -l httpd
+lrwxrwxrwx 1 root root 25 11月 23 07:36 httpd -> /www/wdlinux/init.d/httpd
+jaylee@jaylee-ThinkPad-T440s:/etc/init.d$ sudo rm httpd
+
 
 版本管理:
 -------------------
@@ -165,4 +174,10 @@ SpringMVC为什么在修改一个静态页面必须重新启动服务器才可�
 2.试了下使用springmvc原有的视图转发类无些问题。
 3.所以直接看了thymeleaf官方文档，看到ServletContextTemplateResolver有个属性为templateResolver.setCacheTTLMs(3600000L);所以加上了相关参数，加上如下配置属性：
  <property name="cacheTTLMs" value="10"/>  问题解决。
+4.用phpmyadmin登录mysql不上。
+因为之前装了一个mysql服务，后来又装了一个新的，旧的没卸载干净，导致每次启动都是启动旧的，解决方案是把系统自动启动的进程杀死。
+ps -ef | grep mysqld
+sudo kill -9 1256
+5.hibernate不提交事务，在common的dao层加上flush。
+
 

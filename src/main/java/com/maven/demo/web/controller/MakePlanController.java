@@ -15,6 +15,9 @@ public class MakePlanController {
 
     @RequestMapping(value = "/index")
     public String index(HttpServletRequest request, Model model) {
+        //行程名称
+        request.setAttribute("title",111);
+        //行程数据
         request.setAttribute("dayNum",111);
         return "makeplan/makeplan";
     }

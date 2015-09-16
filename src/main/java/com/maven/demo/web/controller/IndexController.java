@@ -17,36 +17,41 @@ import com.maven.demo.entity.User;
  */
 @Controller("indexController")
 public class IndexController {
-	private static Logger logger = LoggerFactory.getLogger(IndexController.class);
+    private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-	@RequestMapping(value = "/index")
-	public String index(HttpServletRequest request, Model model) {
-		String data = "test";
-		model.addAttribute("data", data);
+    @RequestMapping(value = "/index")
+    public String index(HttpServletRequest request, Model model) {
+        String data = "test";
+        model.addAttribute("data", data);
 //		User user = new User();
 //		user.setUserName("lzj7618937");
 //		model.addAttribute("user", user);
-		return "index";
-	}
-	
-	@RequestMapping(value = "/test")
-	public String test(HttpServletRequest request, Model model) {
-		return "test";
-	}
-	
-	@RequestMapping(value = "/")
-	public String defaultHtml(HttpServletRequest request, Model model) {
-		User user = new User();
-		user.setUserName("lzj7618937");
-//		model.addAttribute("user", user);
-		return "default";
-	}
-	
-	@RequestMapping(value = "/login")
-	@ResponseBody
-	public String login(HttpServletRequest request, Model model) {
-		return "test";
-	}
+        return "index";
+    }
+
+    @RequestMapping(value = "/test")
+    public String test(HttpServletRequest request, Model model) {
+        return "test";
+    }
+
+    @RequestMapping(value = "/gyy")
+    public String gyy(HttpServletRequest request, Model model){
+        return "template";
+    }
+
+    @RequestMapping(value = "/")
+    public String defaultHtml(HttpServletRequest request, Model model) {
+        User user = new User();
+        user.setUserName("lzj7618937");
+        model.addAttribute("user", user);
+        return "default";
+    }
+
+    @RequestMapping(value = "/login")
+    @ResponseBody
+    public String login(HttpServletRequest request, Model model) {
+        return "test";
+    }
 
     @RequestMapping(value = "/go404")
     public String go404(HttpServletRequest request, Model model) {

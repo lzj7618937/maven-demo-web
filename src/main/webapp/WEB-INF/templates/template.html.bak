@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <!-- 触发双核浏览器使用 chrome 内核 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+
+    <link th:href="@{/plugins/image/favicon.ico}" rel="icon" type="image/x-icon"/>
+    <link th:href="@{/plugins/image/favicon.ico}" rel="shortcut icon" type="image/x-icon"/>
+    <link th:href="@{/plugins/image/favicon.ico}" rel="bookmark" type="image/x-icon"/>
+
+    <!--[if gte IE 9]-->
+    <script th:src="@{/plugins/js/v.js}"></script>
+    <script th:src="@{/plugins/js/jquery-2.1.3.min.js}"></script>
+    <!--[endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script th:src="@{/plugins/js/cubead_ca.js}"></script>
+
+    <script th:src="@{/plugins/js/c.js}"></script>
+    <script th:src="@{/plugins/js/bootstrap.min.js}"></script>
+    <link th:href="@{/plugins/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/plugins/magicsuggest-master/magicsuggest-min.css}" rel="stylesheet"/>
+    <script th:src="@{/plugins/magicsuggest-master/magicsuggest.js}"></script>
+    <link th:href="@{/plugins/Font-Awesome-master/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/plugins/css/jquery.mailAutoComplete-4.0.css}" media="all" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/plugins/js/jquery.mailAutoComplete-4.0.js}"></script>
+
+    <script th:src="@{/plugins/js/common.js}"></script>
+    <link th:href="@{/plugins/css/common.css}" rel="stylesheet"/>
+    <script th:src="@{/plugins/js/index.js}"></script>
+    <script th:src="@{/plugins/js/jquery.scrollpic.js}"></script>
+    <link rel="stylesheet" th:href="@{/plugins/css/index.css}"/>
+    <script th:src="@{/plugins/js/touchslider.2.1.js}"></script>
+    <title>玉龍光碧 - 园艺设计专家</title>
+</head>
+<body>
+<!--=S 头部=-->
+<div style="overflow: hidden;height: 0px;width: 0px;">
+    <img alt="缩略图实验" th:src="@{/plugins/image/mm.jpg}"/>
+</div>
+
+<div class="header-index">
+    <div class="head-bar">
+
+        <div class="navbar-header">
+
+            <h1 class="logo navbar-brand">
+                <a href="">
+                    <img th:src="@{/plugins/image/logo-index.png}" alt="玉龍光碧"/>
+                </a>
+            </h1>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right pull-right text-center hidden-xs">
+
+            <div class="header-div">
+                <a class="header-a" data-toggle="modal" href="http://xianbei.cc/#login-panel">登录/注册</a>
+            </div>
+            <div class="header-div header-help">
+                <a class="header-a" href="http://xianbei.cc/faq" id="help">
+                    帮助&nbsp;
+                    <i class="fa fa-caret-down"></i>
+                </a>
+
+                <div class="help-list" style="display: none;">
+                    <ul class="">
+                        <li><a href="http://xianbei.cc/faq" style="color:#ff5a5f">访问帮助中心</a></li>
+                        <li><a href="http://xianbei.cc/faq/1">关于仙贝旅行</a></li>
+                        <li><a href="http://xianbei.cc/faq/2">如何定制行程？</a></li>
+                        <li><a href="http://xianbei.cc/faq/3">成为仙贝的导游</a></li>
+                        <li><a href="http://xianbei.cc/faq/4">费用说明</a></li>
+                        <li><a href="http://xianbei.cc/faq/6">退款政策</a></li>
+                    </ul>
+                    <i class="top"></i>
+                </div>
+            </div>
+            <script>
+                (function ($) {
+                    $(function () {
+                        $(".header-help").mousemove(function () {
+                            $(".help-list").show();
+                        });
+                        $(".header-help").mouseleave(function () {
+                            $(".help-list").hide();
+                        })
+                    });
+                })(jQuery);
+            </script>
+        </ul>
+
+    </div>
+
+
+</div>
+
+<div class="modal fade in" id="login-panel" tabindex="-1" role="dialog" aria-labelledby="login-title"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="login-title">通过以下方式登录</h4>
+            </div>
+
+            <div class="row modal-body">
+                <div class="col-md-12">
+                    <span class="help-block user-pw-input">使用第三方平台账号登录</span>
+
+                    <div class="text-center" style="padding:3px 0 20px 0">
+                        <a href="http://xianbei.cc/openid/qq/login" class="btn btn-lg btn-primary"
+                           style="width:130px;margin-right:8px;">
+                            <i class="fa fa-qq"></i> QQ登陆
+                        </a><a href="http://xianbei.cc/openid/weibo/login" class="btn btn-lg btn-danger"
+                               style="width:130px">
+                        <i class="fa fa-weibo"></i> 微博登陆
+                    </a>
+                    </div>
+                </div>
+                <hr/>
+                <div class="col-md-12">
+
+	            	<span class="help-block user-pw-input">
+	            		<span>仙贝账号&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	            		<a aria-hidden="true" data-dismiss="modal" data-toggle="modal"
+                           href="http://xianbei.cc/#register-panel"></a>
+	            	</span>
+
+                    <div class="clearfix"></div>
+                    <form class="form-horizontal" role="form" method="post" action="http://xianbei.cc/login">
+                        <fieldset>
+                            <div class="input-group user-pw-input">
+	                            <span class="input-group-addon"> <i class="glyphicon glyphicon-envelope"></i>
+	                            </span>
+                                <ul class="emailist"
+                                    style="position: absolute; margin-top: 0px; visibility: hidden; z-index: 11;"></ul>
+                                <input id="login-username" type="text" class="form-control" name="username"
+                                       required="required" value="" placeholder="邮箱"/>
+                            </div>
+                            <div class="input-group user-pw-input">
+	                            <span class="input-group-addon"> <i class="glyphicon glyphicon-lock"></i>
+	                            </span>
+                                <input type="password" class="form-control" name="password" required="required"
+                                       placeholder="密码"/>
+                            </div>
+
+                            <div class="input-group user-pw-input">
+	                            <span class="button-checkbox">
+	                                <input type="checkbox" class="iCheck" checked="true"/>记住登录状态</span>
+
+                                <div class="pull-right"><a href="http://xianbei.cc/password/forget">忘记密码?</a></div>
+
+                            </div>
+                            <script type="text/javascript">
+                                document.write('<input type="hidden" name="BackURL" value="' + window.location.href + '"/>');
+                            </script>
+                            <input type="hidden" name="BackURL"
+                                   value="http://xianbei.cc/index.html;JSESSIONID=417454d9-94d5-4680-a79f-7913ab5cbd11"/>
+
+                            <div class="form-group">
+                                <div class="controls user-pw-btn">
+                                    <button class="btn btn-danger form-control">登录</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- end modal-body -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!-- /.modal -->
+<div class="modal fade" id="register-panel" tabindex="-1" role="dialog" aria-labelledby="register-title"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="register-title">您可以通过以下方式注册！</h4>
+            </div>
+
+            <div class="row modal-body">
+                <div class="col-md-12">
+                    <span class="help-block user-pw-input">使用第三方平台账号登录</span>
+
+                    <div class="text-center" style="padding:3px 0 20px 0">
+                        <a href="http://xianbei.cc/openid/qq/login" class="btn btn-lg btn-primary"
+                           style="width:130px;margin-right:8px;">
+                            <i class="fa fa-qq"></i> QQ登陆
+                        </a><a href="http://xianbei.cc/openid/weibo/login" class="btn btn-lg btn-danger"
+                               style="width:130px">
+                        <i class="fa fa-weibo"></i> 微博登陆
+                    </a>
+                    </div>
+                </div>
+                <hr/>
+               <span class="help-block user-pw-input">
+               		<span>使用邮箱注册仙贝账号&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            		<a href="http://xianbei.cc/password/forget">忘记密码?</a>
+            	</span>
+
+                <form class="form-horizontal" role="form" action="http://xianbei.cc/register" method="POST">
+                    <fieldset>
+                        <div class="input-group user-pw-input">
+                            <span class="input-group-addon"> <i class="glyphicon glyphicon-envelope"> </i>
+                            </span>
+                            <ul class="emailist"
+                                style="position: absolute; margin-top: 0px; visibility: hidden; z-index: 11;"></ul>
+                            <input id="reg-username" type="text" class="form-control" name="email" value=""
+                                   placeholder="邮箱"/>
+                        </div>
+                        <div class="input-group user-pw-input">
+                            <span class="input-group-addon"> <i class="glyphicon glyphicon-lock"> </i>
+                            </span>
+                            <input type="password" class="form-control" name="password" placeholder="密码" value=""/>
+                        </div>
+                        <div class="input-group user-pw-input">
+                            <span class="input-group-addon"> <i class="glyphicon glyphicon-lock"> </i>
+                            </span>
+                            <input type="password" class="form-control" name="password2" placeholder="重复密码" value=""/>
+                        </div>
+                        <div class="input-group user-pw-input">
+                            <span class="input-group-addon"> <i class="glyphicon glyphicon-user"> </i>
+                            </span>
+                            <input value="" type="text" class="form-control" name="nickname"
+                                   placeholder="昵称(中文12个字,英文24个字符以内)"/>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls user-pw-btn">
+                                <button class="btn btn-danger form-control">
+                                    快速注册
+                                </button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+            <!--modal-footer-->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script type="text/javascript">
+    (function ($) {
+        $('#reg-username').mailAutoComplete();
+        $('#login-username').mailAutoComplete();
+    })(jQuery);
+</script>
+
+<!--=E 头部=-->
+<div id="page">
+    <div id="content">
+        <!--=S 轮播区域=-->
+        <div class="banner-slide">
+            <div class="slide-bd">
+                <div class="slide-panels">
+                    <div class="home-header-bg">
+                        <!-- 轮播开始 -->
+                        <div id="carousel-top" class="focus slide">
+                            <div class="hd">
+                                <ul></ul>
+                            </div>
+                            <div class="bd">
+                                <ul style="max-height: 400px; position: relative; transition: none; width: 4656px; left: 0px;"
+                                    id="slider">
+                                    <li style="float: left; display: inline; width: 1552px;">
+                                        <a href="http://xianbei.cc/product/list?labels=14" target="_blank">
+                                            <img th:src="@{/plugins/image/banner1.jpg}"
+                                                 style="width:100%;height:auto;min-width:990px"/>
+                                        </a>
+                                    </li>
+                                    <li style="float: left; display: inline; width: 1552px;">
+                                        <a href="http://show.xianbei.cc/p/2250" target="_blank">
+                                            <img th:src="@{/plugins/image/banner3.jpg}"
+                                                 style="width:100%;height:auto;min-width:990px"/>
+                                        </a>
+                                    </li>
+                                    <li style="float: left; display: inline; width: 1552px;">
+                                        <a href="http://show.xianbei.cc/" target="_blank">
+                                            <img th:src="@{/plugins/image/banner2.jpg}"
+                                                 style="width:100%;height:auto;min-width:990px"/>
+                                        </a>
+                                    </li>
+                                    <!-- Powered by TouchSlider v2.0.1  https://github.com/qiqiboy/touchslider --></ul>
+
+                                <div class="slide_left">
+                                    <div class="img" id="prev"></div>
+                                </div>
+                                <div class="slide_right">
+                                    <div class="img" id="next"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                var slider = new TouchSlider('slider', {
+                                    duration: 800,
+                                    interval: 3000,
+                                    direction: 0,
+                                    autoplay: true,
+                                    mousewheel: false,
+                                    mouse: true,
+                                    fullsize: true
+                                });
+                                $("#prev").click(function () {
+                                    slider.prev();
+                                });
+                                $("#next").click(function () {
+                                    slider.next();
+                                });
+                            });
+                        </script>
+                        <!-- 轮播结束 -->
+                    </div>
+                </div>
+            </div>
+            <div class="slide-ft">
+                <div class="slide-bottom-pub layout">
+                    <!--=S 发布旅行计划=-->
+                    <div class="publish-bar j_publishBar">
+                        <form action="http://xianbei.cc/plan/create">
+                            <button type="submit" class="pub-btn">我要定制</button>
+                        </form>
+                    </div>
+                    <!--=S 发布旅行计划=-->
+                </div>
+            </div>
+        </div>
+        <div style="width: 0px; height: 0px; overflow: hidden;">
+            <img th:src="@{/plugins/image/logo-l.png}"/>
+        </div>
+        <!-- weixin缩略图 -->
+        <!--=E 轮播区域=-->
+        <div class="layout">
+            <div class="nav_link">
+                <div>
+                    <div class="nav">
+                        <div class="pull-left img">
+                            <img th:src="@{/plugins/image/nav.png}"/>
+                        </div>
+                        <div class="title">
+                            <strong>最贴心</strong>
+                        </div>
+                        <div>
+                            <p class="title_2">旅行顾问，定制完美路线</p>
+                        </div>
+                    </div>
+                    <div class="nav">
+                        <div class="pull-left img" style="margin-left: 45px;">
+                            <img th:src="@{/plugins/image/zhuanxin.png}"/>
+                        </div>
+                        <div class="title">
+                            <strong>最专心</strong>
+                        </div>
+                        <div>
+                            <p class="title_2">专注日本，打造优质服务</p>
+                        </div>
+                    </div>
+                    <div class="nav">
+                        <div class="pull-left img " style="margin-left: 90px;">
+                            <img th:src="@{/plugins/image/shengxin.png}"/>
+                        </div>
+                        <div class="title">
+                            <strong>最省心</strong>
+                        </div>
+                        <div>
+                            <p class="title_2">专属导游，给您充实之旅</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="lines"></div>
+
+        <div class="layout">
+            <div class="enter-img" style="margin-top: 30px">
+
+                <div id="enter-img-1" class="pull-left" style="margin-right: 13px">
+                    <a target="_blank" href="http://xianbei.cc/product/list?labels=3"> <img
+                            th:src="@{/plugins/image/baochechangyou.png}"/>
+                    </a>
+                </div>
+
+                <div id="enter-img-2" class="pull-left" style="margin-right: 13px">
+                    <a target="_blank" href="http://xianbei.cc/plan/create"> <img
+                            th:src="@{/plugins/image/xingchengdingzhi.png}"/>
+                    </a>
+                </div>
+
+                <div id="enter-img-3" class="pull-left">
+                    <a target="_blank" href="http://xianbei.cc/product/list?labels=8"> <img
+                            th:src="@{/plugins/image/jichangjiesong.png}"/>
+                    </a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <dl class="collection">
+                <dt>
+                <h4 class="f16 mb20">
+                    <span class="img"><img th:src="@{/plugins/image/collection.png}"/></span>
+                    魅力旅程
+                </h4>
+                </dt>
+                <!--=S dd item=-->
+
+                <div class="collection-city-col">
+                    <div class="collection-city">
+                        <a href="http://xianbei.cc/guide/list?city=13"> <img th:src="@{/plugins/image/tokyo.jpg}"/>
+                        </a>
+
+                        <div class="city_info">
+                            37位导游&nbsp;&nbsp;12项当地服务
+                        </div>
+                    </div>
+                    <div class="collection-city">
+                        <a href="http://xianbei.cc/guide/list?city=40"> <img th:src="@{/plugins/image/fujisan.jpg}"/>
+                        </a>
+
+                        <div class="city_info">
+                            15位导游&nbsp;&nbsp;5项当地服务
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collection-city-col">
+                    <div class="collection-city">
+                        <a href="http://xianbei.cc/guide/list?city=46"> <img th:src="@{/plugins/image/oosaka.jpg}"/>
+                        </a>
+
+                        <div class="city_info">
+                            16位导游&nbsp;&nbsp;5项当地服务
+                        </div>
+                    </div>
+                    <div class="collection-city">
+                        <a href="http://xianbei.cc/guide/list?city=50"> <img th:src="@{/plugins/image/nara.jpg}"/>
+                        </a>
+
+                        <div class="city_info">
+                            13位导游&nbsp;&nbsp;3项当地服务
+                        </div>
+                    </div>
+                    <div class="collection-city">
+                        <a href="http://xianbei.cc/guide/list?city=69"> <img th:src="@{/plugins/image/okinawa.jpg}"/>
+                        </a>
+
+                        <div class="city_info">
+                            1位导游&nbsp;&nbsp;3项当地服务
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="collection-city-col">
+                    <div class="collection-city">
+                        <a href="http://xianbei.cc/guide/list?city=45"> <img th:src="@{/plugins/image/kyoto.jpg}"/>
+                        </a>
+
+                        <div class="city_info">
+                            17位导游&nbsp;&nbsp;5项当地服务
+                        </div>
+                    </div>
+                    <div class="collection-city">
+                        <a href="http://xianbei.cc/guide/list?city=1"> <img th:src="@{/plugins/image/hokkaido.jpg}"/>
+                        </a>
+
+                        <div class="city_info">
+                            5位导游&nbsp;&nbsp;5项当地服务
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </dl>
+        </div>
+
+
+        <div class="clearfix"></div>
+        <div class="layout">
+            <dl class="collection">
+                <dt class="mb20" style="margin-top: 30px">
+                <h4 class="f16">
+                    <span class="img"><img th:src="@{/plugins/image/guide-title.png}"/></span> <a
+                        href="http://xianbei.cc/guide/list" style="color: #666">人气导游</a>
+                </h4>
+                </dt>
+
+                <ul class="collect-list">
+                    <!-- 东京 -->
+                    <li class="collect-item">
+                        <div class="collect-item-inner">
+                            <a href="http://xianbei.cc/guide/855" target="_blank">
+                                <div class="img cover">
+                                    <img th:src="@{/plugins/image/855_8axt3tKNHF.jpg}"/>
+                                </div>
+                                <div class="avt">
+                                    <p class="nickname"><b>Snow</b></p>
+
+                                    <p class="work">自由职业</p>
+
+                                    <p class="city">
+                                        东京
+                                        富士山
+                                        箱根
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="collect-item">
+                        <div class="collect-item-inner">
+                            <a href="http://xianbei.cc/guide/73" target="_blank">
+                                <div class="img cover">
+                                    <img th:src="@{/plugins/image/73_dzRkcfQq3U.jpg}"/>
+                                </div>
+                                <div class="avt">
+                                    <p class="nickname"><b>日本地接JOKI</b></p>
+
+                                    <p class="work">专业导游</p>
+
+                                    <p class="city">
+                                        东京
+                                        箱根
+                                        富士山
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="collect-item">
+                        <div class="collect-item-inner">
+                            <a href="http://xianbei.cc/guide/600" target="_blank">
+                                <div class="img cover">
+                                    <img th:src="@{/plugins/image/600_AISrxFG2w6.jpg}"/>
+                                </div>
+                                <div class="avt">
+                                    <p class="nickname"><b>荃荃</b></p>
+
+                                    <p class="work">留学生</p>
+
+                                    <p class="city">
+                                        东京
+                                        横滨
+                                        迪士尼
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- 关西 -->
+                    <li class="collect-item">
+                        <div class="collect-item-inner">
+                            <a href="http://xianbei.cc/guide/990" target="_blank">
+                                <div class="img cover">
+                                    <img th:src="@{/plugins/image/990_3ctpTzqF47.jpg}"/>
+                                </div>
+                                <div class="avt">
+                                    <p class="nickname"><b>马原</b></p>
+
+                                    <p class="work">留学生</p>
+
+                                    <p class="city">
+                                        京都
+                                        大阪
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="collect-item">
+                        <div class="collect-item-inner">
+                            <a href="http://xianbei.cc/guide/103" target="_blank">
+                                <div class="img cover">
+                                    <img
+                                            th:src="@{/plugins/image/103_i5RbSBYgeL.jpg}"/>
+                                </div>
+                                <div class="avt">
+                                    <p class="nickname"><b>blake</b></p>
+
+                                    <p class="work">在读博士</p>
+
+                                    <p class="city">
+                                        关西
+                                        京都
+                                        大阪
+                                        奈良
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="collect-item">
+                        <div class="collect-item-inner">
+                            <a href="http://xianbei.cc/guide/594" target="_blank">
+                                <div class="img cover">
+                                    <img
+                                            th:src="@{/plugins/image/594_GZy2I0ZqiS.jpg}"/>
+                                </div>
+                                <div class="avt">
+                                    <p class="nickname"><b>Fredi</b></p>
+
+                                    <p class="work">留学生</p>
+
+                                    <p class="city">
+                                        大阪
+                                        京都
+                                        奈良
+                                        神戶
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- 北海道 -->
+                    <li class="collect-item">
+                        <div class="collect-item-inner">
+                            <a href="http://xianbei.cc/guide/439" target="_blank">
+                                <div class="img cover">
+                                    <img
+                                            th:src="@{/plugins/image/439_ptEOBkBNQR.jpg}"/>
+                                </div>
+                                <div class="avt">
+                                    <p class="nickname"><b>小孟</b></p>
+
+                                    <p class="work">专业导游</p>
+
+                                    <p class="city">
+                                        北海道
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- 冲绳 -->
+                    <li class="collect-item">
+                        <div class="collect-item-inner">
+                            <a href="http://xianbei.cc/guide/543" target="_blank">
+                                <div class="img cover">
+                                    <img
+                                            th:src="@{/plugins/image/543_s0ybsBOkjX.jpg}"/>
+                                </div>
+                                <div class="avt">
+                                    <p class="nickname"><b>晓东</b></p>
+
+                                    <p class="work">留学生</p>
+
+                                    <p class="city">
+                                        九州
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- 其他 -->
+                    <div class="clearfix"></div>
+                </ul>
+                <!--=E dd item=-->
+
+            </dl>
+        </div>
+    </div>
+</div>
+
+<!--=S 尾部=-->
+<link rel="stylesheet" th:href="@{/plugins/css/footer.css}"/>
+<div id="footer">
+    <div style="width:0px;height:0px;overflow:hidden;"><img th:src="@{/plugins/image/logo-l.png}"/></div>
+    <!-- weixin缩略图 -->
+    <div class="footer-hd">
+        <div class="layout">
+            <div class="col-md-12">
+                <span><a href="http://www.wenjuan.com/s/BZ73yqd/" target="_blank" class="btn"
+                         style="padding-left:25px;padding-right:25px;background-color:#262626;color:#fff">意见反馈</a></span>
+                &nbsp;&nbsp;&nbsp;
+                <span style="color:#FF5A5F">客服微信：xianbei06 </span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="footer-bd">
+        <div class="layout">
+
+            <div class="links">
+                <div class="col-md-5 col-sm-5" style="width: 386px;">
+                    <div class="text-right">
+                        <p style="font-size:28px;padding:9px 0;color:#DDD;;text-align: left">
+                            <i id="fa"></i>
+                            客服热线
+                        </p>
+
+                        <p style="font-size:20px;padding:10px 0;color:#DDD;text-align: left;">
+                            <img th:src="@{/plugins/image/dianhua.png}"/>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2" style="width: 156px;">
+                    <p class="title">公司信息</p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/faq/1">关于我们</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/faq/5">用户协议</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/faq/1#contact">联系我们</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/faq/10">友情链接</a></p>
+                </div>
+
+
+                <div class="col-md-2 col-sm-2" style="width: 156px;">
+                    <p class="title">帮助中心</p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/plan/intro">预定流程</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/faq/4">费用说明</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/faq/6">退款政策</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/guideApplyFast">成为导游</a></p>
+                </div>
+                <div class=" col-md-2 col-sm-2" style="width: 156px;">
+                    <p class="title">服务支持</p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/plan/create">行程定制</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/product/list?labels=3">包车畅游</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/product/list?labels=8">机场接送</a></p>
+
+                    <p class=""><a target="_blank" href="http://xianbei.cc/product/list.html">精品套餐</a></p>
+                </div>
+
+                <div class=" col-md-3 col-sm-3" style="width: 122px;">
+                    <!--  -->
+                    <div class="pull-right">
+                        <p style="text-align: center;">微信公众号</p>
+                        <img style="width:90px" th:src="@{/plugins/image/qr.jpg}"/>
+                    </div>
+                </div>
+
+
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="links" align="center" style="height: 82px;">
+                <a href="javascript:void(0)" style="z-index: 898989;">
+                    <img class="weixinimg" th:src="@{/plugins/image/erweima.png}" style="display: none;"/>
+
+                    <div class="foot_img weixin showweixin">
+                    </div>
+                </a>
+                <a target="_blank" href="http://www.weibo.com/u/5269383334">
+                    <div class="foot_img weibo">
+                    </div>
+                </a>
+                <a target="_blank" href="#">
+                    <div class="foot_img qq">
+                    </div>
+                </a>
+            </div>
+            <div class="links" style="border-top: 0px solid #666;padding-top: 5px;">
+                <!--
+                    <div class="col-md-12" style="color:#999">
+                        友情链接：<a style="color:#999" title="日本酒店预订" target="_blank" href="http://travel.rakuten.cn/?scid=we_xbe_hp0001">日本酒店预订</a>&nbsp<a style="color:#999" title="台湾民宿" target="_blank" href="http://minsu.taiwandao.tw">台湾民宿</a>&nbsp<a style="color:#999" title="韩国自由行" target="_blank" href="http://www.zaiseoul.com">韩国自由行</a>&nbsp<a style="color:#999" title="韩你玩" target="_blank" href="http://www.hanniwan.com">韩国民宿</a>&nbsp
+                    </div>
+                     -->
+                <div class="col-md-12">
+                    <div class="text-center" style="margin-left: 116px;">© xianbei.Co.,Ltd.
+                        <div class="pull-right" style="color:#777">京ICP备15004700号</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<link th:href="@{/plugins/css/bottomBar.css}" media="all" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+    $(function () {
+        $("#layout-bottom_close").click(function () {
+            $(".bottomBar").hide();
+        });
+
+        $(".showweixin").mouseleave(function () {
+            $(".weixinimg").hide();
+        });
+
+        $(".showweixin").mousemove(function () {
+            $(".weixinimg").show();
+        });
+    });
+</script>
+<div class="bottomBar" style="display: none;">
+    <i id="layout-bottom_close" class="close fa fa-close"></i>
+
+    <div class="bar-bg">
+        <p></p>
+    </div>
+    <div class="join wrapper">
+        <h1>夏季一大波<font color="#FF5A5F">福利</font>来袭，快来扫一扫~</h1>
+
+        <div class="v2Bar-picture">
+            <img style="width:159px" th:src="@{/plugins/image/article_2.png}"/>
+        </div>
+    </div>
+</div>
+<div class="float_nav">
+    <a href="http://xianbei.cc/plan/create">
+        <div class="nav1"></div>
+    </a> <a target="_self" href="javascript:void(0)">
+    <div class="nav2"></div>
+</a>
+
+    <div class="nav3">
+        <div class="nav3-list" style="display: none;">
+            <ul class="">
+                <li>
+                    <div class="tel">咨询专线</div>
+                    <a href="" style="color: #ff5a5f">4008-131-005</a></li>
+            </ul>
+            <i class="left"></i>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".nav3").mousemove(function () {
+            $(".nav3-list").show();
+        }).mouseleave(function () {
+            $(".nav3-list").hide();
+        });
+        $(".nav2").click(function () {
+            var width = Math.round((window.screen.width - 800) / 2);
+            var height = Math.round((window.screen.height - 600) / 2);
+        });
+    });
+</script>
+<!--=E 尾部=-->
+<script type="text/javascript">
+    (function ($) {
+        var loadImage = function () {
+            $('[data-original]').each(function (i, e) {
+                $(e).attr('src', $(e).data('original'));
+            });
+        };
+
+        var playVideo = function () {
+            //video play
+            var video = document.getElementById("J_videoshow");
+            $(video).on('canplay', function () {
+                video.play();
+                video.style.visibility = 'visible';
+            });
+        };
+
+        $(function () {
+            loadImage();
+            playVideo();
+        });
+    })(jQuery);
+</script>
+
+</body>
+</html>

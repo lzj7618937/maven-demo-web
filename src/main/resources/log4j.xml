@@ -48,6 +48,7 @@
     <!-- [组件日志] -->
     <logger name="LOGISTICS-COMPONENT">
         <level value="${loggingLevel}"/>
+        <appender-ref ref="console"/>
         <appender-ref ref="COMPONENT-APPENDER"/>
         <appender-ref ref="ERROR-APPENDER"/>
     </logger>
@@ -55,6 +56,7 @@
     <!-- Root Logger -->
     <root>
         <level value="${rootLevel}"></level>
+        <appender-ref ref="console"/>
         <appender-ref ref="DEFAULT-APPENDER"/>
         <appender-ref ref="ERROR-APPENDER"/>
     </root>

@@ -1,0 +1,74 @@
+.bottomBar{
+  background-color: #000;
+  background: rgba(44,49,55,0.8) none repeat scroll 0 0 !important;
+  filter: Alpha(opacity=80);
+  color: #fff;
+  font-size: 19px;
+  height: 80px;
+  line-height: 85px;
+  padding: 0 28px 0;
+  right: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  font-family: "Microsoft Yahei Font";
+  display: none;
+}
+.bottomBar div{
+  display: block;
+}
+.bottomBar .wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 986px;
+}
+.bottomBar .close {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: url(../image/close.png) no-repeat;
+  background-position: 0 0;
+  font-size: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+i{
+  font-style: italic;
+}
+.bottomBar .join.wrapper span {
+  font-size: 12px;
+  padding: 0 0 20px;
+  color: #b7b7b7;
+  font-size: 16px;
+}
+.bottomBar .join.wrapper .v2Bar-picture {
+  width: 267px;
+  height: 121px;
+  position: absolute;
+  left: 72px;
+  top: -42px;
+}
+.bottomBar .join.wrapper h1 {
+  float: right;
+  color: #fff;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 89px;
+  margin-right: 327px;
+}
+h1{
+  font-size: 100%;
+  font-weight: normal;
+  font-family: "microsoft yahei";
+}
